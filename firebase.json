@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "dist",
+    "source": "**/!(*.css|*.js|*.map|*.jpg|*.gif|*.png|*.php)",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
