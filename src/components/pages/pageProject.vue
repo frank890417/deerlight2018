@@ -189,7 +189,7 @@ export default {
     max-height: 854px
     background-color: #eee
     background-position: center center
-    background-attachment: fixed
+    // background-attachment: fixed
     // margin-top: 30px
     margin-bottom: 50px
     background-size: cover

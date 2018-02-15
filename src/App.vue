@@ -1,5 +1,6 @@
 <template lang="pug">
 #app
+  navbar
   transition(name="page" , mode="out-in")
     pageLoading(v-if="loading")
   transition(name="page" , mode="out-in")
@@ -37,8 +38,24 @@ body
   // height: auto
   // height: 100vh
   // overflow: hidden
-  border: solid 15px white
+  // padding: 0 !important
+  // margin: 0 !important
+  // border: solid 15px white
   background-color: #f8f8f8
+  font-size: 16px
+  font-weight: 500
+
+html
+  padding: 0 !important
+  margin: 0 !important
+  background-color: #f8f8f8
+
+h1, h2 
+  font-weight: normal
+
+  
+h1
+  font-weight: 900
 
 h2.sectionTitle
   font-size: 29.4px
@@ -57,11 +74,44 @@ h2.sectionTitle
     background-color: #c1ceee
     mix-blend-mode: multiply
     
+h4
+  font-size: 20px
+  margin-top: 20px
+
+h5
+  // color: white
+  margin-top: 15px
+  font-size: 17.4px
+  // margin-bottom: 30px
+  opacity: 1
+  // border-left: solid 5px white
+  // padding-left: 20px
+  position: relative
+  z-index: 10
+  line-height: 1.5
+  font-weight: 600
+  width: 100%
+  color: white
+  // &:first-letter
+    // font-size: 30px
+    // margin-right: 2px
+
+h6
+  // color: white
+  opacity: 0.5
+  letter-spacing: 1px
+  float: right
+  margin-top: 10px
+
 p
   font-size: 16px
   line-height: 1.88
   letter-spacing: 0.8px
   // margin-top: 60px
+
+.text-op
+  opacity: 0.5
+  
 
 .page-enter-active,.page-leave-active
   transition: 0.3s

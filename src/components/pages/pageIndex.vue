@@ -3,8 +3,8 @@
     .container-fluid
       .row.row-info
         .col-sm-12.col-info.text-left
-          h3 曝鹿<br>設計工作室
-          hr
+          //- h3 曝鹿<br>設計工作室
+          //- hr
           router-link(to="/manage" ) 前往編輯
           
         .col-sm-12
@@ -60,40 +60,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
-h1, h2 
-  font-weight: normal
-h1
-  font-weight: 900
-  
-h4
-  font-size: 20px
-  margin-top: 20px
-
-h5
-  // color: white
-  margin-top: 15px
-  font-size: 17.4px
-  // margin-bottom: 30px
-  opacity: 1
-  // border-left: solid 5px white
-  // padding-left: 20px
-  position: relative
-  z-index: 10
-  line-height: 1.5
-  font-weight: 600
-  width: 100%
-  color: white
-  // &:first-letter
-    // font-size: 30px
-    // margin-right: 2px
-
-h6
-  // color: white
-  opacity: 0.5
-  letter-spacing: 1px
-  float: right
-  margin-top: 10px
-
 
 // .col-info
 //   position: fixed
@@ -154,7 +120,7 @@ h6
     transition-duration: 0.5s
     filter: saturate(0)
     &:hover
-      transform: translateY(-5px)
+      // transform: translateY(-5px)
       filter: saturate(100%)
       box-shadow: 0px 20px 20px -5px rgba(black,0.2)
       &:before

@@ -12,6 +12,7 @@
   "dependencies": {
     "element-ui": "^2.0.11",
     "node-sass": "^4.7.2",
+    "popper.js": "^1.12.9",
     "vue": "^2.5.2",
     "vue-analytics": "^5.8.0",
     "vue-axios": "^2.0.2",

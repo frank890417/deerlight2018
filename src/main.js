@@ -7,29 +7,19 @@ import store from './store'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-// import Tether from "tether"
-// import $ from "jquery"
-// window.jQuery = $
-// window.Tether = Tether
-// require('bootstrap')
 
-import section_footer from './components/section_footer'
+import Tether from "tether"
+import $ from "jquery"
+window.jQuery = $
+window.Tether = Tether
+require('bootstrap')
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-Vue.component("section_footer", section_footer)
+
 
 /* eslint-disable no-new */
-var vm = new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: { App }
-})
-setTimeout(() => {
-  store.commit("setLoading",false)
-}, 1500);
 
 Vue.mixin({
   methods: {
@@ -43,6 +33,25 @@ Vue.mixin({
     }
   }
 })
+
+
+import section_footer from './components/section_footer'
+import navbar from './components/navbar'
+Vue.component("section_footer", section_footer)
+Vue.component("navbar", navbar)
+
+var vm = new Vue({
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: { App }
+})
+setTimeout(() => {
+  store.commit("setLoading", false)
+}, 1500);
+
+
 var config = {
     apiKey: "AIzaSyB3qv5BN-vBlxaWe6QcubTYZFwfwJfKzb4",
     authDomain: "deerlight-studio.firebaseapp.com",
@@ -55,8 +64,7 @@ window.firebase = firebase
 firebase.initializeApp(config);
 
 var worksRef = firebase.database().ref('works');
-worksRef.on('value', function (snapshot) {
-
+  worksRef.on('value', function (snapshot) {
   store.commit("setWorks", snapshot.val())
   // snapshot.forEach(function (childSnapshot) {
     
