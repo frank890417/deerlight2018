@@ -1,5 +1,5 @@
 <template lang="pug">
-  .page-edit
+  .page.page-edit
     .container-fluid
       .row
         .col-sm-3.col-list.text-left

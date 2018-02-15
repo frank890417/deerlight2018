@@ -1,5 +1,5 @@
 <template lang="pug">
-  .page-index
+  .page.page-index
     .container-fluid
       .row.row-info
         .col-sm-12.col-info.text-left
@@ -36,24 +36,14 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
     }
   },
   computed: {
     ...mapState(["works"])
   },
   methods:{
-    cssbg(url) {
-      let use_url = (url && url != '') ? url : '/img/default.jpg'
-      let result = {
-        'background-image': `url("${use_url} ")`
-      }
-      // console.log(result)
-      return result
-    }, 
   }
 }
 </script>

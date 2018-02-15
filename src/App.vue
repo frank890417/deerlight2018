@@ -25,6 +25,7 @@ export default {
 
 <style lang="sass">
 
+@import "assets/_mixin.sass"
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css)
 
 #app
@@ -111,7 +112,13 @@ p
 
 .text-op
   opacity: 0.5
-  
+.text-active
+  padding: 3px 5px
+  color: $colorBlue
+  border-bottom: solid 1px $colorBlue
+
+.page
+  min-height: 100vh
 
 .page-enter-active,.page-leave-active
   transition: 0.3s

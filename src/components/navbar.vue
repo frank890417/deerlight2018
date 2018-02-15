@@ -1,65 +1,35 @@
-<template>
-  <nav class="navbar navbar-default navbar-fixed" :class="{ 'at_top':scrollTop<=2, 'navbar-fixed-top': fixed }">
-    <div class="container">
-        <div class="navbar-header">
+<template lang="pug">
+nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+  button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
+    span.navbar-toggler-icon
+  router-link.navbar-brand(to="/")
+    // n3xtcon
+    .logowraper
+      img.logo.white(src="/static/common/navigation-logo.svg" alt="")
+      img.logo(src="/static/common/navigation-logo-white.svg" alt="")
+  #navbarTogglerDemo02.collapse.navbar-collapse
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <router-link class="navbar-brand" to="/">
-                <!-- n3xtcon -->
-                <div class="logowraper">
-                    <img class="logo white" src="/static/common/navigation-logo.svg" alt="">
-                    <img class="logo" src="/static/common/navigation-logo-white.svg" alt="">
-                </div>
-            </router-link>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <!-- <ul class="nav navbar-nav">
-                &nbsp;
-            </ul> -->
-
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-                <li @click="toggleNav"><router-link to="/about">About</router-link></li>
-                <li @click="toggleNav"><router-link to="/event">Events</router-link></li>
-                <li @click="toggleNav"><router-link to="/speaker">Speakers</router-link></li>
-                <!-- <li @click="toggleNav"><router-link to="/blog">Blog</router-link></li> -->
-                <!-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <span class="caret"></span>
-                    </a>
-
-                    <ul class="dropdown-menu" role="menu">
-
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
-                        <li>
-                            <a href="/logout"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-
-                            <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                               
-                            </form>
-                        </li>
-                    </ul>
-                </li> -->
-            </ul>
-        </div>
-    </div>
-  </nav> 
+    ul.navbar-nav.mr-auto.mt-2.mt-md-0
+      // Authentication Links
+      li(@click="toggleNav")
+        router-link(to="/works") 作品
+      li(@click="toggleNav")
+        router-link(to="/product") 產品
+      li(@click="toggleNav")
+        router-link(to="/about") 關於
+    ul.navbar-nav.mr-auto.mt-2.mt-md-0
+      li.nav-item.active
+        a.nav-link(href="#")
+          | Home 
+          span.sr-only (current)
+      li.nav-item
+        a.nav-link(href="#") Link
+      li.nav-item
+        a.nav-link.disabled(href="#") Disabled
+    //- form.form-inline.my-2.my-lg-0
+    //-   input.form-control.mr-sm-2(type="text" placeholder="Search")
+    //-   button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
+          
 </template>
 
 <script>
@@ -88,15 +58,27 @@ nav.navbar.navbar-default
   padding-bottom: 5px
   max-width: 100vw
   background-color: white
+  z-index: 100
+  height: 112px
+  box-sizing: border-box
+  &:before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 8px
+    background-image: linear-gradient(to right, #88b4fd 22%, #5278d7)
 
   .container
     max-width: 1600px
   .logowraper
     position: relative
-
+    margin-top: 10px
   img
-    height: 45px
-    margin-top: -10px
+    width: 51px
+    height: 77px
+    // margin-top: -10px
     transition: 0.5s
     &.black
       position: absolute

@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-loading
+.page.page-loading
   //- img.animated.fadeIn(src="/static/img/cover.png")
   h3 loading
 </template>

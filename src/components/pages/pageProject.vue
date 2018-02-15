@@ -1,10 +1,10 @@
 <template lang="pug">
-  .page-project
+  .page.page-project
     .container-fluid
       .row
         .col-sm-12
           .cover(:style="cssbg(work.coverbg || work.cover)")
-            router-link.btn-back(to="/") Back
+            //- router-link.btn-back(to="/") Back
             .yt(v-if="work.video")
               iframe(id="ytplayer" type="text/html" width="800" height="450"
               :src="work.video.replace('watch?v=','embed/').replace('&feature=youtu.be','')+'?showinfo=0'"
@@ -54,7 +54,7 @@
           //- h3 Project Information
       .row
         .col-sm-12
-          h3 更多作品
+          h3.more 更多作品
       .row.row-nav
         router-link.col-nav(
           v-for="(proj,projid) in projnav"
@@ -182,8 +182,8 @@ export default {
     letter-spacing: 1.5px
     text-align: left
 
-  
-
+  h3.more
+    font-size: 18px
   .cover
     height: 60vh
     max-height: 854px
@@ -219,7 +219,7 @@ export default {
 .row-nav
   padding: 0
   margin: -30px
-  margin-top: 200px
+  margin-top: 30px
 
 .col-nav
   cursor: pointer
