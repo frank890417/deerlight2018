@@ -10,7 +10,7 @@ import pageProjectEdit from '@/components/pages/pageProjectEdit'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
