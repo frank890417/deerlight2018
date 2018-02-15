@@ -45,7 +45,7 @@ body
   background-color: #f8f8f8
   font-size: 16px
   font-weight: 500
-
+  padding-top: 112px
 html
   padding: 0 !important
   margin: 0 !important

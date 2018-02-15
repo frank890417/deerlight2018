@@ -63,6 +63,7 @@ export default {
 @import "../../assets/_mixin.sass"
 
 .page-works
+  padding-top: 120px
   .col-subnav
     line-height: 2.2
     ul
