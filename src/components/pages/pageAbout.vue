@@ -43,7 +43,7 @@
             .info
               h3 {{client.name}}
               p {{client.description}}
-              router-link(to="/work") 代表專案
+              router-link(to="/works") 代表專案
             
         hr
 </template>

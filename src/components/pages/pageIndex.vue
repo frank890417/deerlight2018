@@ -1,7 +1,7 @@
 <template lang="pug">
   .page.page-index
     .container-fluid.container-slides
-      .col-sm-12
+      .col-sm-12.slick
         .cover(v-for="slide in slides", :style="cssbg(slide.cover)")
     .container-fluid
       .row.row-info
@@ -33,20 +33,72 @@
 
 <script>
 import { mapState } from 'vuex'
+import $ from 'jquery'
+import slick from 'slick-carousel'
 export default {
   data () {
     return {
-      slides: [
-        {
-          cover: "/static/首頁/slider-1.png"
-        }
-      ]
+      slides: [],
+      currentSlideId: 0,
+      slickOptions: {
+          slidesToShow: 1,
+          arrows: false,
+          // dots: true
+          // Any other options that can be got from plugin documentation
+      },
     }
   },
   computed: {
-    ...mapState(["works"])
+    ...mapState(["works"]),
+    currentSlide(){
+      return this.slides[this.currentSlideId]
+    }
+  },
+  mounted(){
+    this.slides=[
+        {
+          cover: "/static/首頁/slider-1.png"
+        },
+        {
+          cover: "/static/首頁/slider-2.png"
+        },
+        {
+          cover: "/static/首頁/slider-3.png"
+        },
+        {
+          cover: "/static/首頁/slider-4.png"
+        }
+      ]
   },
   methods:{
+
+      next() {
+          $(".slick").slick("next");
+      },
+
+      prev() {
+          $(".slick").slick("prev");
+      },
+  },
+  watch:{
+
+    slides(){
+      if (this.slides.length>0){
+        setTimeout(()=>{
+          this.$nextTick(() => {
+            $(".slick").slick(
+              this.slickOptions
+            )
+            let _this=this
+            $(".slick").on('beforeChange', function(event, slick, currentSlide, nextSlide){
+              console.log(nextSlide)
+              _this.currentSlideId=nextSlide
+            })
+
+          });
+        },300)
+      }
+    }
   }
 }
 </script>
@@ -54,6 +106,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
 
+@import "../../assets/_mixin.sass"
 // .col-info
 //   position: fixed
 //   left: 50px
@@ -76,7 +129,7 @@ export default {
     padding: 20px
     z-index: 1000
   .cover
-    min-height: 700px
+    min-height: 650px
     margin-top: -50px
     margin-bottom: 200px
     background-size: cover
@@ -84,6 +137,8 @@ export default {
     padding: 20px 50px
     display: flex
     justify-content: center
+    +rwd_sm
+      padding: 20px
     // align-items: center
   .row-work
     // padding: 20px
@@ -107,7 +162,6 @@ export default {
     // padding: 18px
     color: black
     padding: 0
-
     &:hover
       text-decoration: none
     .work

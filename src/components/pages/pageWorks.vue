@@ -4,9 +4,9 @@
     .row
       .col-sm-2.col-subnav
         div
-          label(:class="{'text-active': filter==''}") 全部
+          label.curp(@click="filter=''",:class="{'text-active': filter==''}") 全部
         div
-          label 曝鹿概念設計
+          label.curp 曝鹿概念設計
         br
         div
           label.text-op 依類別
@@ -21,12 +21,12 @@
       .col-sm-10
         .row
           router-link.col-sm-3.col-work.animated.fadeIn(
-            v-for="(work,wid) in works",
-            :to="`/project/${wid}`", 
-            :key="wid")
+            v-for="(item) in filtered_works",
+            :to="`/project/${item.id}`", 
+            :key="item.work.title")
             .work
-              .cover(:style="cssbg(work.cover)")
-              h3 {{work.title}}
+              .cover(:style="cssbg(item.work.cover)")
+              h3 {{item.work.title}}
           
 
 </template>
@@ -47,10 +47,13 @@ export default {
   computed: {
     ...mapState(["works"]),
     filtered_works(){
-      return this.works.filter( o=>{
-        if (this.filter=="") return true
-        return (o.catas)
-      })
+      return Object.keys(this.works)
+        .map(o=>({id: o,work:this.works[o]}))
+        .filter( o=>{
+          // return true
+          if (this.filter=="") return true
+          return o.work.type.indexOf(this.filter)!=-1 || o.work.cata.indexOf(this.filter)!=-1
+        })
     }
   },
   methods:{
@@ -64,6 +67,8 @@ export default {
 
 .page-works
   padding-top: 120px
+  .curp
+    cursor: pointer
   .col-subnav
     line-height: 2.2
     ul

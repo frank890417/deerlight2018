@@ -4,6 +4,7 @@ import pageIndex from '@/components/pages/pageIndex'
 import pageWorks from '@/components/pages/pageWorks'
 import pageAbout from '@/components/pages/pageAbout'
 import pageProject from '@/components/pages/pageProject'
+import pageProduct from '@/components/pages/pageProduct'
 import pageProjectEdit from '@/components/pages/pageProjectEdit'
 
 Vue.use(Router)
@@ -23,6 +24,10 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: pageAbout
+    }, {
+      path: '/product',
+      name: 'product',
+      component: pageProduct
     }, {
       path: '/manage',
       name: 'project_edit',

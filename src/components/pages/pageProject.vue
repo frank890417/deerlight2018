@@ -58,11 +58,11 @@
       .row.row-nav
         router-link.col-nav(
           v-for="(proj,projid) in projnav"
-          :to="`/project/${projid}`", 
-          :style="cssbg(proj.cover)",
-          :key="projid")
-          h3 {{proj.title}}
-          h3.cata {{proj.cata[0]}}
+          :to="`/project/${proj.id}`", 
+          :style="cssbg(proj.work.cover)",
+          :key="proj.id")
+          h3 {{proj.work.title}}
+          h3.cata {{proj.work.cata[0]}}
 
         //- router-link.col-sm-6.col-nav(
         //-   :to="`/project/${projnav.pre.id}`", 
@@ -92,7 +92,8 @@ export default {
       return this.works[this.$route.params.id]
     },
     projnav(){
-      return this.works
+
+      return Object.keys(this.works).slice(0,5).map(o=>({id: o, work: this.works[o]}))
       // let currentId =  Object.keys(this.works).indexOf(this.$route.params.id)
       // let pre =  Object.keys(this.works)[currentId-1]
       // let nxt =  Object.keys(this.works)[currentId+1]
