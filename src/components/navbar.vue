@@ -1,31 +1,31 @@
 <template lang="pug">
 nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
-  button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
-    span.navbar-toggler-icon
+  //- button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
+  //-   span.navbar-toggler-icon
   router-link.navbar-brand(to="/")
     // n3xtcon
     .logowraper
       img.logo.white(src="/static/common/navigation-logo.svg" alt="")
       img.logo(src="/static/common/navigation-logo-white.svg" alt="")
-  #navbarTogglerDemo02.collapse.navbar-collapse
+  //- #navbarTogglerDemo02.collapse.navbar-collapse
 
-    ul.navbar-nav.mr-auto.mt-2.mt-md-0
-      // Authentication Links
-      li(@click="toggleNav")
-        router-link(to="/works") 作品
-      li(@click="toggleNav")
-        router-link(to="/product") 產品
-      li(@click="toggleNav")
-        router-link(to="/about") 關於
-    ul.navbar-nav.mr-auto.mt-2.mt-md-0
-      li.nav-item.active
-        a.nav-link(href="#")
-          | Home 
-          span.sr-only (current)
-      li.nav-item
-        a.nav-link(href="#") Link
-      li.nav-item
-        a.nav-link.disabled(href="#") Disabled
+  ul.navbar-nav.mr-auto.mt-2.mt-md-0
+    // Authentication Links
+    li.nav-item(@click="toggleNav")
+      router-link(to="/works") 作品
+    li.nav-item(@click="toggleNav")
+      router-link(to="/product") 產品
+    li.nav-item(@click="toggleNav")
+      router-link(to="/about") 關於
+  //- ul.navbar-nav.mr-auto.mt-2.mt-md-0
+  //-   li.nav-item.active
+  //-     a.nav-link(href="#")
+  //-       | Home 
+  //-       span.sr-only (current)
+  //-   li.nav-item
+  //-     a.nav-link(href="#") Link
+  //-   li.nav-item
+  //-     a.nav-link.disabled(href="#") Disabled
     //- form.form-inline.my-2.my-lg-0
     //-   input.form-control.mr-sm-2(type="text" placeholder="Search")
     //-   button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search

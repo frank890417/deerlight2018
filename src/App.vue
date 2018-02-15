@@ -110,6 +110,9 @@ p
   letter-spacing: 0.8px
   // margin-top: 60px
 
+a
+  color: $colorBlue
+
 .text-op
   opacity: 0.5
 .text-active
