@@ -15,7 +15,7 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded
     ul.navbar-nav.ms-auto.mt-2.mt-md-0
       // Authentication Links
       li.nav-item(@click="toggleNav")
-        router-link(to="/works") 作品
+        router-link(to="/project") 作品
       li.nav-item(@click="toggleNav")
         router-link(to="/product") 產品
       li.nav-item(@click="toggleNav")

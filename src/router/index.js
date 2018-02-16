@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import pageIndex from '@/components/pages/pageIndex'
-import pageWorks from '@/components/pages/pageWorks'
+import pageProjectList from '@/components/pages/pageProjectList'
 import pageAbout from '@/components/pages/pageAbout'
 import pageProject from '@/components/pages/pageProject'
 import pageProduct from '@/components/pages/pageProduct'
+import pageProductApp from '@/components/pages/pageProductApp'
 import pageProjectEdit from '@/components/pages/pageProjectEdit'
 
 Vue.use(Router)
@@ -17,9 +18,9 @@ export default new Router({
       name: 'index',
       component: pageIndex
     }, {
-      path: '/works',
-      name: 'works',
-      component: pageWorks
+      path: '/project',
+      name: 'project',
+      component: pageProjectList
     }, {
       path: '/about',
       name: 'about',
@@ -28,6 +29,10 @@ export default new Router({
       path: '/product',
       name: 'product',
       component: pageProduct
+    }, {
+      path: '/product/app',
+      name: 'productApp',
+      component: pageProductApp
     }, {
       path: '/manage',
       name: 'project_edit',

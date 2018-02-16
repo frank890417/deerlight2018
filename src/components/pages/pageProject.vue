@@ -24,8 +24,8 @@
               li 
                 label 客戶
               li(v-if="work.link")
-                label Link
-                a(:href="work.link", target="_blank") {{work.link}}
+                label 連結
+                //- a(:href="work.link", target="_blank") {{work.link}}
           .col-sm-9
             h1 {{work.title}}
             .info.text-left
@@ -45,10 +45,11 @@
               li 
                 span {{work.client}}
               li(v-if="work.link")
-                label Link
+                //- label Link
                 a(:href="work.link", target="_blank") {{work.link}}
             p.text-left(v-html="processHTML(work.description)")
-
+      .full-content-area(:class="{'container': work.version=='平面類' || work.version=='影片類','container-fluid': work.version=='介面類'}", :data-type="work.version")
+        .row
           .col-sm-12
             p.content.text-left(v-html="processHTML(work.content)")
           //- h3 Project Information
@@ -131,6 +132,16 @@ export default {
 .page-project
   // padding-bottom: 20vh
   
+  .full-content-area
+    &.container-fluid
+      padding: 0
+      .col-sm-12
+        padding: 0
+    img
+      width: 100%
+    &[data-type="介面類"]
+      p img
+        margin-bottom: -20px
   ul
     list-style: none
     padding: 0
