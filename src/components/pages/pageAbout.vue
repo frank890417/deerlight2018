@@ -8,7 +8,7 @@
         h2 關於
       .col-sm-5 
         h3 致力於品牌設計與概念視覺化
-        p 曝鹿設計工作室，由周妙音設計師與謝亞政工程師共同創辦。曝鹿設計選擇了不同的脈絡，發展特殊的品牌風格，我們所執行的每一件專案與產品，都是理性與感性交織而成。
+        p 曝鹿設計工作室，展現特殊的品牌風格，並持續的多元發展，曝鹿所執行的每一件專案與產品，都是理性與感性交織而成。
       .col-sm-5
         br
         br
@@ -27,16 +27,18 @@
     .row
       .col-sm-2
         h2 成員
-      .col-sm-5(v-for="member in members")
-        .member_logo(:style="cssbg(member.logo)")
-        h3 {{member.name}}
-        p(v-html="member.description")
+      .col-sm-10
+        .row.nopadding
+          .col-sm-6(v-for="member in members")
+            .member_logo(:style="cssbg(member.logo)")
+            h3 {{member.name}}
+            p(v-html="member.description")
       hr
     .row.row-client
       .col-sm-2
         h2 合作及客戶
       .col-sm-10
-        .row
+        .row.nopadding
           .col-sm-6.col-client(v-for="client in clients")
             .logo
               img(:src="client.logo")
@@ -62,6 +64,16 @@ export default {
           logo: "/static/關於/pic-2.png",
           name: "謝亞政",
           description: "共同創辦人及程式開發工程師<br>出生於 1994 年，擅長視覺設計、介面設計、影像影視製作，現於各司及新創擔任品牌顧問及介面設計師。"
+        },
+        {
+          logo: "/static/關於/pic-2.png",
+          name: "謝銘勳",
+          description: ""
+        },
+        {
+          logo: "/static/關於/pic-2.png",
+          name: "周宜君",
+          description: ""
         }
       ],
       clients: [
@@ -132,12 +144,11 @@ export default {
     .row
       padding: 100px 0px 
       border-bottom: solid 1px rgba(black,0.2)
+      &.nopadding
+        padding: 0
+        border: none
     .row.row-client
       border-bottom: none
-      .row
-        padding-top: 0
-        padding-bottom: 0
-        border-bottom: none
       .logo
         width: 100%
       .col-client

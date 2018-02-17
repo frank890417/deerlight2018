@@ -10,6 +10,9 @@
               
 
           
+          .btn.btn-primary.form-control(@click="saveAll") SAVE!
+          br
+          br
           ul.list-group.text-left
             li.list-group-item(v-for="(w,wid) in works", @click="nowId=wid", :class="{active:nowId==wid}")
               .row
@@ -18,7 +21,6 @@
                   .btn.btn-danger.btn-xs(@click="removeItem(wid)") -
             li.list-group-item(@click="addItem") + 新增
           br
-          .btn.btn-primary.form-control(@click="saveAll") SAVE!
         .col-sm-9.offset-3(v-if="work", :key="nowId")
           .container-fluid.text-left
             .row
@@ -250,10 +252,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
 
+
 h1
   font-weight: 900
 .page-edit
   padding-top: 50px
+  ul.list-group
+    max-height: 60vh
+    overflow-y: auto
+
 .cover
   height: 400px
   background-color: #eee
