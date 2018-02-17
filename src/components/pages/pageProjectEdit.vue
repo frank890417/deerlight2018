@@ -1,6 +1,9 @@
 <template lang="pug">
   .page.page-edit
-    .container-fluid
+    .container(v-show="!user")
+      h3 請登入管理員帳號
+      #firebaseui-auth-container
+    .container-fluid(v-if="user")
       .row
         .col-sm-3.col-list.text-left
           ul.breadcrumb
@@ -20,6 +23,8 @@
                 .col-2
                   .btn.btn-danger.btn-xs(@click="removeItem(wid)") -
             li.list-group-item(@click="addItem") + 新增
+          
+          .btn.btn-secondary.form-control(onclick="firebase.auth().signOut()") 登出
           br
         .col-sm-9.offset-3(v-if="work", :key="nowId")
           .container-fluid.text-left
@@ -119,17 +124,72 @@
 import { mapState } from 'vuex'
 import { VueEditor } from 'vue2-editor'
 import Vue from 'vue'
+
+// var firebaseui = require('firebaseui');
+
+
+
 export default {
   components: {VueEditor},
   data () {
     return {
       nowId: -1,
+      user: null,
       defaut_hashtags: ["品牌","介面","使用者體驗","影片","平面動態"],
       defaut_types: ["電商","服飾","無"]
     }
   },
   mounted(){
     this.nowId = Object.keys(this.works)[0]
+    
+    let _this = this
+    var uiConfig = {
+      callbacks: {
+        signInSuccess: function(currentUser, credential, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          _this.user=currentUser
+          return false;
+        },
+        uiShown: function() {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      // signInSuccessUrl: '<url-to-redirect-to-on-success>',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+      ],
+      // Terms of service url.
+      // tosUrl: '<your-tos-url>'
+    };
+    setTimeout(()=>{
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          _this.user=user
+          console.log(user)
+        } else {
+          _this.user=null
+          // No user is signed in.
+        }
+      });
+      // Initialize the FirebaseUI Widget using Firebase.
+      // firebase.auth()
+      // console.log( firebase.auth().currentUser)
+      ui.start('#firebaseui-auth-container', uiConfig);
+      // _this.user = firebase.auth().currentUser
+
+    },0)
   },
   computed:{
     ...mapState(['works']),
@@ -181,8 +241,13 @@ export default {
     saveAll(){
       var worksRef = window.firebase.database().ref('works');
       // console.log(this.work)
-      worksRef.set(this.works)
-      this.$message('儲存成功！');
+      worksRef.set(this.works).then(()=>{
+
+        this.$message('儲存成功！');
+      }).catch(()=>{
+
+        this.$message.warning('儲存失敗.. 你確定有權限嗎？');
+      })
 
     },
     handleAvatarSuccess(res, file) {

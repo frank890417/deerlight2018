@@ -71,16 +71,21 @@ var config = {
   };
 window.firebase = firebase
 firebase.initializeApp(config);
-
-var worksRef = firebase.database().ref('works');
+console.log(firebase)
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+window.ui=ui
+setTimeout(() => {
+  var worksRef = firebase.database().ref('works');
   worksRef.on('value', function (snapshot) {
-  store.commit("setWorks", snapshot.val())
-  // snapshot.forEach(function (childSnapshot) {
-    
-  //   var childKey = childSnapshot.key;
-  //   var childData = childSnapshot.val();
-  //   store.commit("setWorks", childData)
-  //   // console.log(childData);
-  //   // ...
-  // });
-});
+    store.commit("setWorks", snapshot.val())
+    console.log("Test")
+    // snapshot.forEach(function (childSnapshot) {
+
+    //   var childKey = childSnapshot.key;
+    //   var childData = childSnapshot.val();
+    //   store.commit("setWorks", childData)
+    //   // console.log(childData);
+    //   // ...
+    // });
+  });
+}, 100);
