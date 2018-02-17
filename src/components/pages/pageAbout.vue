@@ -8,11 +8,10 @@
         h2 關於
       .col-sm-5 
         h3 致力於品牌設計與概念視覺化
-        p 曝鹿設計工作室，展現特殊的品牌風格，並持續的多元發展，曝鹿所執行的每一件專案與產品，都是理性與感性交織而成。
-      .col-sm-5
-        br
-        br
-        span.text-active 沒有華而不實的包裝，只呈現最真實且感性的設計。
+        p 曝鹿設計工作室，展現特殊的品牌風格，並持續的多元發展，曝鹿所執行的每一件專案與產品，都是理性與感性交織而成。<br><br>沒有華而不實的包裝，只呈現最真實且感性的設計。
+      .col-sm-5 
+        h3 森林的迷霧中散落著光，在鹿角間赤裸裸
+        p Deerlight 原指夜晚中的聚光燈照射著鹿，形容為美所震懾，象徵曝鹿令人驚艷的設計。<br><br>Deerlight design studio∣曝鹿設計<br>坦誠相見的專業服務。
       hr
     .row
       .col-sm-2
@@ -123,6 +122,7 @@ export default {
     font-size: 18px
     font-weight: 700
     letter-spacing: 1.3px
+    margin-bottom: 25px
 
   p
     font-size: 16px

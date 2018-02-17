@@ -1,7 +1,7 @@
 <template lang="pug">
   .page.page-index
     .container-fluid.container-slides
-      .col-sm-12.slick
+      .col-sm-12.slick.animated.fadeIn
         .cover(v-for="slide in slides", :style="cssbg(slide.cover)")
     .container-fluid
       .row.row-info
@@ -43,6 +43,7 @@ export default {
       slickOptions: {
           slidesToShow: 1,
           arrows: false,
+          autoplay: true
           // dots: true
           // Any other options that can be got from plugin documentation
       },
@@ -96,7 +97,7 @@ export default {
             })
 
           });
-        },300)
+        },200)
       }
     }
   }
@@ -129,10 +130,11 @@ export default {
     padding: 20px
     z-index: 1000
   .cover
-    min-height: 650px
+    min-height: 700px
     margin-top: -50px
     margin-bottom: 200px
     background-size: cover
+    background-position: center center
   .row-info
     padding: 20px 50px
     display: flex

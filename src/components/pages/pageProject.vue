@@ -94,7 +94,12 @@ export default {
     },
     projnav(){
 
-      return Object.keys(this.works).slice(0,5).map(o=>({id: o, work: this.works[o]}))
+      let result = Object.keys(this.works)
+                .sort(()=>(Math.random()-0.5))
+                .map(o=>({id: o, work: this.works[o]}))
+                .sort((a,b)=> (a.work.cata || []).indexOf(this.work.cata[0])>(b.work.cata || []).indexOf(this.work.cata[0])?0:1 )
+                .slice(0,5)
+      return result
       // let currentId =  Object.keys(this.works).indexOf(this.$route.params.id)
       // let pre =  Object.keys(this.works)[currentId-1]
       // let nxt =  Object.keys(this.works)[currentId+1]

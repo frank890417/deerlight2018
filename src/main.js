@@ -48,9 +48,17 @@ var vm = new Vue({
   template: '<App/>',
   components: { App }
 })
-setTimeout(() => {
-  store.commit("setLoading", false)
-}, 1500);
+
+if (process.env.NODE_ENV == "development") {
+  setTimeout(() => {
+    store.commit("setLoading", false)
+  }, 0);
+}
+if (process.env.NODE_ENV=="production"){
+  setTimeout(() => {
+    store.commit("setLoading", false)
+  }, 3000);
+}
 
 
 var config = {

@@ -87,11 +87,11 @@ export default {
               label: "FREE!",
               img: "",
               bgcolor: "white",
-              target: "/",
+              target: "/product/card",
             },{
               label: "more",
               img: "",
-              target: "/",
+              target: "/product/card",
               bgcolor: "transparent"
             }
           ]

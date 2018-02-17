@@ -6,6 +6,7 @@ import pageAbout from '@/components/pages/pageAbout'
 import pageProject from '@/components/pages/pageProject'
 import pageProduct from '@/components/pages/pageProduct'
 import pageProductApp from '@/components/pages/pageProductApp'
+import pageProductCard from '@/components/pages/pageProductCard'
 import pageProjectEdit from '@/components/pages/pageProjectEdit'
 
 Vue.use(Router)
@@ -33,6 +34,10 @@ export default new Router({
       path: '/product/app',
       name: 'productApp',
       component: pageProductApp
+    }, {
+      path: '/product/card',
+      name: 'productCard',
+      component: pageProductCard
     }, {
       path: '/manage',
       name: 'project_edit',

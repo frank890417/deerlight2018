@@ -40,8 +40,7 @@ export default {
       filter_cata: 
         `品牌,影片 / 平面動態,視覺設計,介面 / 使用者體驗`.split(","),
       filter_style: 
-        `插畫,優雅,大膽,平靜,豐富`.split(",")
-      
+        `插畫,優雅 / 平靜,大膽,豐富`.split(",")
     }
   },
   computed: {

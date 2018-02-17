@@ -27,9 +27,10 @@ export default {
 
 @import "assets/_mixin.sass"
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css)
+@import url(https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900)
 
 #app
-  font-family: 'Noto Sans TC','Avenir', Helvetica, Arial, sans-serif !important
+  font-family: 'Muli','Noto Sans TC','Avenir', Helvetica, Arial, sans-serif !important
 body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
