@@ -3,7 +3,7 @@
   .container-fluid
     //- .cover(:style="cssbg('/static/關於/banner.png')")
     .cover
-      video(src="/static/關於/Facebook cover.mp4" autoplay muted)
+      video(src="/static/關於/Facebook cover.mp4" autoplay muted loop)
   .container.container-info.text-left
     .row
       .col-sm-2
@@ -30,9 +30,10 @@
         h2 成員
       .col-sm-10
         .row.nopadding
-          .col-sm-6(v-for="member in members")
+          .col-sm-6.col-member(v-for="member in members")
             .member_logo(:style="cssbg(member.logo)")
             h3 {{member.name}}
+            h4 {{member.position}}
             p(v-html="member.description")
       hr
     .row.row-client
@@ -58,23 +59,27 @@ export default {
       members: [
         {
           logo: "/static/關於/pic-1.png",
-          name: "周妙音",
-          description: "創辦人及設計總監<br>出生於 1994 年，擅長視覺設計、介面設計、影像影視製作，現於各司及新創擔任品牌顧問及介面設計師。"
+          name: "周妙音 Jhane Chou",
+          position: "創辦人及設計總監",
+          description: "出生於 1994 年，擅長視覺設計、介面設計、影像影視製作，現於各司及新創擔任品牌顧問及介面設計師。"
         },
         {
           logo: "/static/關於/pic-2.png",
-          name: "謝亞政",
-          description: "共同創辦人及程式開發工程師<br>出生於 1994 年，擅長視覺設計、介面設計、影像影視製作，現於各司及新創擔任品牌顧問及介面設計師。"
+          name: "謝亞政 Samuel Hsieh",
+          position: "共同創辦人及打雜和遊手好閒的APP工程師",
+          description: "出生於 1993 年，擅長Android APP 設計、吹豎笛。"
         },
         {
-          logo: "/static/關於/pic-2.png",
-          name: "謝銘勳",
-          description: ""
+          logo: "/static/關於/pic-3.png",
+          name: "謝銘勳 Mingxun Hsieh",
+          position: "平面、動態影像設計師",
+          description: "出生於 1999 年，因爲繪畫進而對平面設計產生興趣，高二開始獨立接案至今，類型包含動態設計、平面設計、插畫、影音剪輯等。"
         },
         {
-          logo: "/static/關於/pic-2.png",
-          name: "周宜君",
-          description: ""
+          logo: "/static/關於/pic-4.png",
+          name: "周宜君 Jhinny Chou",
+          position: "設計粗心者",
+          description: "設計粗心者，即將越級打怪 la<br>姐姐帶我打怪囉！"
         }
       ],
       clients: [
@@ -133,6 +138,15 @@ export default {
     letter-spacing: 1.3px
     margin-bottom: 25px
 
+  h4
+    font-size: 16px
+    font-weight: 500
+    letter-spacing: 1.2px
+    margin-top: -15px
+    margin-bottom: 25px
+    opacity: 0.6
+
+
   p
     font-size: 16px
     letter-spacing: 1.2px
@@ -148,7 +162,8 @@ export default {
     height: 140px
     background-size: cover
     background-position: center center
-    
+  .col-member
+    margin-bottom: 80px
   .container-info
     .row
       padding: 100px 0px 
