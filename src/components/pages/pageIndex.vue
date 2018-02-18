@@ -5,7 +5,7 @@
         .cover(v-for="slide in slides", :style="cssbg(slide.cover)")
     .container-fluid
       .row.row-info
-        router-link.btn-edit(to="/manage" ) 前往編輯
+        router-link.btn-edit(to="/manage" )
           
         .col-sm-12
           h2.sectionTitle 曝鹿精選
@@ -125,9 +125,9 @@ export default {
     position: fixed
     right: 0
     top: 0
-    background-color: black
+    // background-color: black
     color: white
-    padding: 20px
+    padding: 10px
     z-index: 1000
   .cover
     min-height: 700px
