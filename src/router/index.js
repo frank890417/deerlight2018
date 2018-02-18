@@ -8,6 +8,7 @@ import pageProduct from '@/components/pages/pageProduct'
 import pageProductApp from '@/components/pages/pageProductApp'
 import pageProductCard from '@/components/pages/pageProductCard'
 import pageProjectEdit from '@/components/pages/pageProjectEdit'
+import pageContact from '@/components/pages/pageContact'
 
 Vue.use(Router)
 
@@ -28,7 +29,7 @@ export default new Router({
       component: pageAbout
     }, {
       path: '/product',
-      name: 'product',
+      name: 'productList',
       component: pageProduct
     }, {
       path: '/product/app',
@@ -46,6 +47,10 @@ export default new Router({
       path: '/project/:id',
       name: 'project',
       component: pageProject
+    }, {
+      path: '/contact',
+      name: 'contact',
+      component: pageContact
     }
   ],
   scrollBehavior(to, from, savedPosition) {

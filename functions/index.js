@@ -14,3 +14,26 @@ exports.addMessage = functions.https.onRequest((req,res)=>{
     return res.redirect(303,snapshot.ref)
   })
 })
+
+
+exports.sendContactForm = functions.https.onRequest((req, res) => {
+  const cors = require('cors')({ origin: true });
+
+  const name = req.query.name;
+  const title = req.query.title;
+  const content = req.query.content;
+  const subscribe = req.query.subscribe;
+  const mail = req.query.mail;
+  let data = {
+    name, title, content, subscribe, mail
+  }
+  response.send(data);
+  if (req.method=="post"){
+    return admin.database().ref('/contact_record').push(data).then((snapshot) => {
+      return res.redirect(303, snapshot.ref)
+    })
+    
+  }else{
+    res.send("method not allowed");
+  }
+})

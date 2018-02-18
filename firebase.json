@@ -11,7 +11,12 @@
       {
         "source": "**/!(*.css|*.js|*.map|*.jpg|*.gif|*.png|*.php)",
         "destination": "/index.html"
+      },
+      {
+        "source": "/api/send_contact_form",
+        "function": "send_contact_form"
       }
+    
     ]
   }
 }

@@ -8,6 +8,11 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import "slick-carousel/slick/slick.css"
+import axios from 'axios'
+window.axios = axios
+// window.axios.defaults.headers.common = { 'X-Requested-With': 'XMLHttpRequest' }
+// window.axios.defaults.baseURL = "https://us-central1-deerlight-studio.cloudfunctions.net/"
+
 
 import Tether from "tether"
 import $ from "jquery"
