@@ -9,7 +9,7 @@
     ],
     "rewrites": [
       {
-        "source": "/api/send_contact_form",
+        "source": "api/send_contact_form",
         "function": "send_contact_form"
       },
       {
