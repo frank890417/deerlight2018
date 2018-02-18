@@ -3,8 +3,9 @@
   navbar
   transition(name="page" , mode="out-in")
     pageLoading(v-if="loading")
-  transition(name="page" , mode="out-in")
-    router-view(:key="$route.path")
+  .all_pages_area
+    transition(name="page" , mode="out-in")
+      router-view(:key="$route.path")
   section_footer
 </template>
 
@@ -31,6 +32,11 @@ export default {
 
 #app
   font-family: 'Muli','Noto Sans TC','Avenir', Helvetica, Arial, sans-serif !important
+
+.all_pages_area
+  min-height: 100vh
+  padding-top: 112px
+
 body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
@@ -46,7 +52,6 @@ body
   background-color: #f8f8f8
   font-size: 16px
   font-weight: 500
-  padding-top: 112px
 html
   padding: 0 !important
   margin: 0 !important
@@ -125,7 +130,7 @@ a
   min-height: 100vh
 
 .page-enter-active,.page-leave-active
-  transition: 0.3s
+  transition: 0.5s
   // &:before
   //   display: block
   //   content: ""

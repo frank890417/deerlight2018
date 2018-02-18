@@ -1,7 +1,9 @@
 <template lang="pug">
 .page.page-about
   .container-fluid
-    .cover(:style="cssbg('/static/關於/banner.png')")
+    //- .cover(:style="cssbg('/static/關於/banner.png')")
+    .cover
+      video(src="/static/關於/Facebook cover.mp4" autoplay muted)
   .container.container-info.text-left
     .row
       .col-sm-2
@@ -112,7 +114,14 @@ export default {
     max-width: 1200px
   .cover
     width: 100%
-    min-height: 500px
+    height: 580px
+    display: flex
+    justify-content: center
+    align-items: center
+    overflow: hidden
+    video
+      width: 100%
+    
   h2
     font-size: 34px
     font-weight: 600
