@@ -97,6 +97,7 @@ export default {
       let result = Object.keys(this.works)
                 .sort(()=>(Math.random()-0.5))
                 .map(o=>({id: o, work: this.works[o]}))
+                .filter(o=>o.work.show)
                 .sort((a,b)=> (a.work.cata || []).indexOf(this.work.cata[0])>(b.work.cata || []).indexOf(this.work.cata[0])?0:1 )
                 .slice(0,5)
       return result

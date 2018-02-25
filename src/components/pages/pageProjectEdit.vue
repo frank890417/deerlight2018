@@ -20,6 +20,9 @@
             li.list-group-item(v-for="(w,wid) in works", @click="nowId=wid", :class="{active:nowId==wid}")
               .row
                 .col-10 {{w.title}}
+                  //- span(v-if="!w.show") (草稿)
+                  span
+                    el-switch.float-right(v-model="w.show")
                 .col-2
                   .btn.btn-danger.btn-xs(@click="removeItem(wid)") -
             li.list-group-item(@click="addItem") + 新增

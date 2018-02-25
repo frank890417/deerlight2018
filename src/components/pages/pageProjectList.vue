@@ -6,7 +6,8 @@
         div
           label.curp(@click="filter=''",:class="{'text-active': filter==''}") 全部
         div
-          label.curp 曝鹿概念設計
+          label.curp(@click="filter='曝鹿概念設計'") 
+            span(:class="{'text-active': filter=='曝鹿概念設計'}") 曝鹿概念設計
         br
         div
           label.text-op 依類別
@@ -48,6 +49,7 @@ export default {
     filtered_works(){
       return Object.keys(this.works)
         .map(o=>({id: o,work:this.works[o]}))
+        .filter( o=>o.work.show )
         .filter( o=>{
           // return true
           if (this.filter=="") return true
