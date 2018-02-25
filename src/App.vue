@@ -119,6 +119,15 @@ p
 a
   color: $colorBlue
 
+.btn.black
+  background-color: black
+  color: white
+  border: solid 1px black
+  border-radius: 5px
+  padding: 15px 60px
+  &:hover
+    background-color: transparent
+    color: black
 .text-op
   opacity: 0.5
 .text-active
@@ -131,18 +140,7 @@ a
 
 .page-enter-active,.page-leave-active
   transition: 0.5s
-  // &:before
-  //   display: block
-  //   content: ""
-  //   width: 100vw
-  //   height: 100vh
-  //   background-color: #222
-  //   position: fixed
-  //   top: 100vh
-  //   left: 0
-  //   transition: 0.5s
-  //   transition-timing-function: ease-in
-  //   z-index: 100
+
 .page-leave-active
   &:before
     transition-timing-function: ease-out
