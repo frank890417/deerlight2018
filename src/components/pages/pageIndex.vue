@@ -1,9 +1,9 @@
 <template lang="pug">
   .page.page-index
-    .container-fluid.container-slides
+    section.container-fluid.container-slides
       .col-sm-12.slick.animated.fadeIn
         .cover(v-for="slide in slides", :style="cssbg(slide.cover)")
-    .container-fluid
+    section.container-fluid
       .row.row-info
         router-link.btn-edit(to="/manage" )
           
@@ -23,10 +23,12 @@
                     .tags
                       .tag(v-for="tag in work.cata") {{tag}}
      
-        .col-sm-12
+        router-link.col-sm-12.title-works(to="/project")
           h2.sectionTitle 作品
-        .col-sm-12
+          i.fas.fa-angle-right
+        router-link.col-sm-12.title-products(to="/product")
           h2.sectionTitle 產品
+          i.fas.fa-angle-right
           
 
 </template>
@@ -145,7 +147,35 @@ export default {
   .row-work
     // padding: 20px
     text-align: left
-    
+
+  .title-works
+    margin-top: 126px
+    font-weight: 500
+    letter-spacing: 2px
+
+  
+  .title-works,.title-products
+    color: black
+    cursor: pointer
+    .sectionTitle
+      &:before
+        width: 0
+        +trans
+    .fa-angle-right
+      font-size: 30px
+      margin-left: 30px
+      +trans
+    &:hover
+      .fa-angle-right
+        margin-left: 40px
+      .sectionTitle
+        &:before
+          width: 80px
+  
+  .title-products
+    margin-top: 80px
+    font-weight: 500
+    letter-spacing: 2px
 
   .page-index
     // background-color: black
