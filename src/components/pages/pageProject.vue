@@ -7,7 +7,7 @@
             //- router-link.btn-back(to="/") Back
             .yt(v-if="work.video")
               iframe(id="ytplayer" type="text/html" width="800" height="450"
-              :src="work.video.replace('watch?v=','embed/').replace('&feature=youtu.be','')+'?showinfo=0'"
+              :src="work.video.replace('watch?v=','embed/').replace('&feature=youtu.be','')+'?showinfo=0&autoplay=1&repeat=1&loop=1&rel=0'"
               frameborder="0")
       .container.content-area
         //- .row(v-if="work")
