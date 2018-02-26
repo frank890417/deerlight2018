@@ -14,14 +14,14 @@
             .container
               .row
                 router-link.col-xs-3.col-sm-3.col-md-3.col-work.animated.fadeIn(
-                    v-for="(work,wid) in works", 
-                    :to="`/project/${wid}`", 
-                    :key="wid"
+                    v-for="(work,wid) in available_works", 
+                    :to="`/project/${work.id}`", 
+                    :key="work.id"
                   )
-                  .work(:style="cssbg(work.cover)")
-                    h5 {{work.title}}
+                  .work(v-for="w in [work.work]" :style="cssbg(w.cover)")
+                    h5 {{w.title}}
                     .tags
-                      .tag(v-for="tag in work.cata") {{tag}}
+                      .tag(v-for="tag in w.cata") {{tag}}
      
         router-link.col-sm-12.title-works(to="/project")
           h2.sectionTitle 作品
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState ,mapGetters} from 'vuex'
 import $ from 'jquery'
 import slick from 'slick-carousel'
 export default {
@@ -52,7 +52,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(["works"]),
+    ...mapGetters({
+      available_works: "available_works"
+    }),
     currentSlide(){
       return this.slides[this.currentSlideId]
     }

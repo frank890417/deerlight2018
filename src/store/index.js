@@ -15,5 +15,12 @@ export default new Vuex.Store({
     setLoading(state,value){
       state.loading=value
     }
+  },
+  getters: {
+    available_works(state){
+      return Object.keys(state.works)
+             .map(o => ({ id: o, work: state.works[o] }))
+             .filter(o => o.work.show)
+    }
   }
 })
