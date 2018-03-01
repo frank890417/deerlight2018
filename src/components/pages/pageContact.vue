@@ -9,7 +9,8 @@
           span(:class="{'text-active': currentSection=='normal'}") 一般訊息
         .col-sm-4(@click="currentSection='quote'")
           span(:class="{'text-active': currentSection=='quote'}") 委託 / 索取報價
-        .col-sm-4 問卷調查
+        .col-sm-4(@click="currentSection='investigate'")
+          span(:class="{'text-active': currentSection=='investigate'}") 問卷調查
   transition(name="page",mode="out-in")
     section.container.text-left.section-form(v-if="currentSection=='normal'")
       .row

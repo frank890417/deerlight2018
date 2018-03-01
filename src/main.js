@@ -66,6 +66,11 @@ if (process.env.NODE_ENV=="production"){
 }
 
 
+//soft scroll
+import soft_scroll from './plugins/soft_scroll'
+soft_scroll.init()
+
+
 var config = {
     apiKey: "AIzaSyB3qv5BN-vBlxaWe6QcubTYZFwfwJfKzb4",
     authDomain: "deerlight-studio.firebaseapp.com",

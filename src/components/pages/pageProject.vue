@@ -180,7 +180,7 @@ export default {
     align-items: center
   .yt
     position: relative
-    box-shadow: 0px 0px 40px rgba(black,0.3)
+    // box-shadow: 0px 0px 40px rgba(black,0.3)
     top: 100px
     
   .content-area

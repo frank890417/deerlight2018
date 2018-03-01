@@ -69,7 +69,7 @@ h2.sectionTitle
   margin-bottom: 74px
   position: relative
   display: inline-block
-  font-weight: 900
+  font-weight: 500
   &:before
     content: ""
     display: block

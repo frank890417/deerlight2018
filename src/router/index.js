@@ -12,47 +12,49 @@ import pageContact from '@/components/pages/pageContact'
 
 Vue.use(Router)
 
-export default new Router({
+let routes = [
+  {
+    path: '/',
+    name: 'index',
+    component: pageIndex
+  }, {
+    path: '/project',
+    name: 'projectList',
+    component: pageProjectList
+  }, {
+    path: '/about',
+    name: 'about',
+    component: pageAbout
+  }, {
+    path: '/product',
+    name: 'productList',
+    component: pageProduct
+  }, {
+    path: '/product/app',
+    name: 'productApp',
+    component: pageProductApp
+  }, {
+    path: '/product/card',
+    name: 'productCard',
+    component: pageProductCard
+  }, {
+    path: '/manage',
+    name: 'project_edit',
+    component: pageProjectEdit
+  }, {
+    path: '/project/:id',
+    name: 'project',
+    component: pageProject
+  }, {
+    path: '/contact',
+    name: 'contact',
+    component: pageContact
+  }
+]
+
+const router = new Router({
   mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'index',
-      component: pageIndex
-    }, {
-      path: '/project',
-      name: 'project',
-      component: pageProjectList
-    }, {
-      path: '/about',
-      name: 'about',
-      component: pageAbout
-    }, {
-      path: '/product',
-      name: 'productList',
-      component: pageProduct
-    }, {
-      path: '/product/app',
-      name: 'productApp',
-      component: pageProductApp
-    }, {
-      path: '/product/card',
-      name: 'productCard',
-      component: pageProductCard
-    }, {
-      path: '/manage',
-      name: 'project_edit',
-      component: pageProjectEdit
-    }, {
-      path: '/project/:id',
-      name: 'project',
-      component: pageProject
-    }, {
-      path: '/contact',
-      name: 'contact',
-      component: pageContact
-    }
-  ],
+  routes,
   scrollBehavior(to, from, savedPosition) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -66,3 +68,16 @@ export default new Router({
 
   }
 })
+
+
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  if (to.path.indexOf("/manage") == 0) {
+    window.softScrollDisable = true
+  } else {
+    window.softScrollDisable = false
+  }
+  next()
+})
+
+export default router

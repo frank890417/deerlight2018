@@ -56,7 +56,7 @@ export default {
       available_works: "available_works"
     }),
     currentSlide(){
-      return this.slides[this.currentSlideId]
+      return this.slides[this.currentzSlideId]
     }
   },
   mounted(){
@@ -214,13 +214,13 @@ export default {
       align-items: flex-start
       flex-direction: column
       position: relative
-      box-shadow: 0px 15px 20px -5px rgba(black,0.2)
+      // box-shadow: 0px 15px 20px -5px rgba(black,0.2)
       transition-duration: 0.5s
       filter: saturate(0)
       &:hover
         // transform: translateY(-5px)
         filter: saturate(100%)
-        box-shadow: 0px 20px 20px -5px rgba(black,0.2)
+        // box-shadow: 0px 20px 20px -5px rgba(black,0.2)
         &:before
           opacity: 0
         .tags,h5

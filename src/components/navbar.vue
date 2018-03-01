@@ -38,7 +38,9 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded
 </template>
 
 <script>
+
 import {mapState} from 'vuex'
+import $ from 'jquery'
 export default {
     props: ['fixed'],
     computed:{
