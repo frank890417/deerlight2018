@@ -70,13 +70,16 @@ const router = new Router({
 })
 
 
+import preloader from 'monoame-preloader'
+import soft_scroll from 'monoame-softscroll'
 router.beforeEach((to, from, next) => {
   console.log(to);
   if (to.path.indexOf("/manage") == 0) {
-    window.softScrollDisable = true
+    soft_scroll.set(false)
   } else {
-    window.softScrollDisable = false
+    soft_scroll.set(true)
   }
+
   next()
 })
 

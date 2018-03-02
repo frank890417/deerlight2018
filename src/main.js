@@ -67,9 +67,23 @@ if (process.env.NODE_ENV=="production"){
 
 
 //soft scroll
-import soft_scroll from './plugins/soft_scroll'
+import soft_scroll from 'monoame-softscroll'
 soft_scroll.init()
 
+import preloader from 'monoame-preloader'
+var preloadList = [
+  "/static/首頁/slider-1.png",
+  "/static/首頁/slider-2.png",
+  "/static/首頁/slider-3.png",
+  "/static/首頁/slider-4.png",
+  "/static/聯絡/banner.png",
+  "/static/common/footer-logo.svg"
+]
+preloader.load(preloadList).then(() => {
+  console.log("all preloaded!")
+}).catch(() => {
+  console.warn("some images can't be loaded")
+})
 
 var config = {
     apiKey: "AIzaSyB3qv5BN-vBlxaWe6QcubTYZFwfwJfKzb4",
@@ -84,9 +98,10 @@ firebase.initializeApp(config);
 console.log(firebase)
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 window.ui=ui
-setTimeout(() => {
+setTimeout(() => { 
   var worksRef = firebase.database().ref('works');
   worksRef.on('value', function (snapshot) {
+    preloader.load(Object.values(snapshot.val()).map(o=>o.cover))
     store.commit("setWorks", snapshot.val())
     console.log("Test")
     // snapshot.forEach(function (childSnapshot) {
