@@ -37,15 +37,20 @@
               //- span  
             ul.text-left.list-content
               li 
+                span.label-content 類別
                 span(v-for="t in work.cata") {{t}}
               li 
+                span.label-content 類型
                 span(v-for="t in work.type") {{t}}
               li 
+                span.label-content 時間
                 span {{work.date.split("-")[0]}}
               li 
+                span.label-content 客戶
                 span {{work.client}}
               li(v-if="work.link")
                 //- label Link
+                span.label-content 連結
                 a(:href="work.link", target="_blank") {{work.link}}
             p.text-left(v-html="processHTML(work.description)")
       .full-content-area(:class="{'container': work.version=='平面類' || work.version=='影片類','container-fluid': work.version=='介面類'}", :data-type="work.version")
@@ -135,10 +140,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass">
+@import "../../assets/_mixin.sass"
 
 .page-project
   // padding-bottom: 20vh
-  
+  .col-content
+    +rwd_sm
+      display: none
+  .label-content
+    display: none
+    &:after
+      content: ""
+    +rwd_sm
+      display: inline-block
+      width: 70px
   .full-content-area
     &.container-fluid
       padding: 0
@@ -237,15 +252,19 @@ export default {
 
 .row-nav
   padding: 0
-  margin: -30px
   margin-top: 30px
+  height: 235px
+  +rwd_sm
+    flex-direction: column
+    height: initial
+    
 
 .col-nav
   cursor: pointer
   background-color: #eee
   background-size: cover
-  height: 235px
-  width: 20%
+  height: 100%
+  flex: 1
   background-position: center center
   color: transparent
   padding: 0
@@ -257,13 +276,17 @@ export default {
   padding: 35px 30px
 
   position: relative
+
+  +rwd_sm
+    height: 235px
+
   &>*
     flex: 1
     flex-shrink: 0
     flex-grow: 0
   // margin: -15px
   // width: calc( 100% + 30px )
-  &:hover
+  &:hover,&:active,&:focus
     text-decoration: none !important
   h3
     position: relative
@@ -276,7 +299,7 @@ export default {
     &.cata
       opacity: 0.5
 
-  &:hover
+  &:hover,&:active,&:focus
     color: white
     &:before
       opacity: 0.7

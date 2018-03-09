@@ -6,7 +6,12 @@ export default new Vuex.Store({
 
   state: {
     works: [],
-    loading: true
+    loading: true,
+    filter: "",
+    filter_cata:
+      `品牌,影片 / 平面動態,視覺設計,介面 / 使用者體驗`.split(","),
+    filter_style:
+      `插畫,優雅 / 平靜,大膽,豐富`.split(",")
   },
   mutations: {
     setWorks(state, value){
@@ -14,6 +19,9 @@ export default new Vuex.Store({
     },
     setLoading(state,value){
       state.loading=value
+    },
+    setFilter(state, value) {
+      state.filter = value
     }
   },
   getters: {

@@ -11,17 +11,28 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded
         span 曝鹿
         span.text-op 設計工作室
     //- #navbarTogglerDemo02.collapse.navbar-collapse
-
-    ul.navbar-nav.ms-auto.mt-2.mt-md-0
+    
+    .icon_bars(@click="nav_open = !nav_open;search_open=false;", :class="{cross: nav_open}")
+      .bar
+      .bar
+      .bar
+    .icon_search(@click="search_open = true;nav_open=true;")
+      i.fa.fa-search
+    ul.navbar-nav(:class="{active: nav_open}")
       // Authentication Links
       li.nav-item(@click="toggleNav")
+        router-link(to="/") 首頁
+      li.nav-item.range(@click="toggleNav")
         router-link(to="/project") 作品
-      li.nav-item(@click="toggleNav")
+      li.nav-item.range(@click="toggleNav")
         router-link(to="/product") 產品
       li.nav-item(@click="toggleNav")
         router-link(to="/about") 關於
       li.nav-item(@click="toggleNav")
         router-link(to="/contact") 聯絡
+    .navbar-nav.hide(:class="{active: search_open}")
+      sectionWorkFilter( @click="toggleNav")
+     
     //- ul.navbar-nav.mr-auto.mt-2.mt-md-0
     //-   li.nav-item.active
     //-     a.nav-link(href="#")
@@ -38,18 +49,29 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded
 </template>
 
 <script>
-
+import sectionWorkFilter from "@/components/sectionWorkFilter.vue"
 import {mapState} from 'vuex'
 import $ from 'jquery'
 export default {
+    data() {
+      return {
+        nav_open: false,
+        search_open: false
+      }
+    },
     props: ['fixed'],
     computed:{
       ...mapState(['scrollTop'])
     },
     methods: {
         toggleNav(){
+            this.nav_open=false;
+            this.search_open=false;
             $(".navbar-collapse").collapse('hide');
         },
+    },
+    components: {
+      sectionWorkFilter
     }
 }
 </script>
@@ -70,6 +92,9 @@ nav.navbar.navbar-default
   box-sizing: border-box
   background-color: #fff
   z-index: 100
+  +rwd_sm
+    padding: 0
+    height: 60px
   &:before
     content: ""
     position: absolute
@@ -79,10 +104,14 @@ nav.navbar.navbar-default
     height: 8px
     background-image: linear-gradient(to right, #88b4fd 22%, #5278d7)
 
+    +rwd_sm
+      display: none
   .container
     max-width: 1600px
     display: flex
     justify-content: space-between
+    
+            
   .logowraper
     position: relative
     margin-top: 10px
@@ -120,11 +149,89 @@ nav.navbar.navbar-default
       font-size: 16px
       &:hover
         color: black
+  .icon_search
+    display: none
+    cursor: pointer
+    +rwd_sm
+      display: block
+      position: absolute
+      right: 60px
+      top: 15px
+      font-size: 24px
+      z-index: 50
+  .icon_bars
+    width: 24px
+    height: 24px
+    position: fixed
+    right: 20px
+    top: 20px
+    z-index: 50
+    cursor: pointer
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-direction: column
+    display: none
+    +rwd_sm
+      display: block
+    
+    .bar
+      width: 100%
+      height: 3px
+      background-color: #333
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%,-50%)
+      &:nth-child(3)
+        transform: translate(-50%,-50%)
+        top: 10%
+      &:nth-child(1)
+        transform: translate(-50%,-50%)
+      &:nth-child(2)
+        transform: translate(-50%,-50%)
+        top: 90%
+      +trans
+    &.cross
+      .bar
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%,-50%) rotate(-45deg)
+        &:nth-child(2)
+          transform: translate(-50%,-50%) rotate(45deg)
+      
   .navbar-nav
     display: inline-flex
     flex-direction: row
+    &.hide
+      display: none
+    +rwd_sm
+      &.hide
+        display: block
+      opacity: 0
+      display: block
+      position: fixed
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      background-color: #fff
+      pointer-events: none
+      padding: 60px
+      margin: 0
+      a
+        font-size: 20px
+      +trans
+      &.active
+        opacity: 1
+        pointer-events: initial
     .nav-item
       margin-right: 50px
+      +rwd_sm
+        margin-right: 0
+        text-align: left
+        margin-bottom: 40px
     li.nav-item a
       position: relative
       &:before
@@ -139,7 +246,11 @@ nav.navbar.navbar-default
         mix-blend-mode: multiply
         opacity: 0
         +trans
-    li.nav-item a.router-link-active
+    li.nav-item a.router-link-exact-active
+      &:before
+        width: 35px
+        opacity: 1
+    li.nav-item.range a.router-link-active
       &:before
         width: 35px
         opacity: 1

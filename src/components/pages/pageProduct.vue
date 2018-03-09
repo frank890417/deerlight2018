@@ -1,6 +1,6 @@
 <template lang="pug">
   .page.page-product.text-left
-    div(v-for="product in products",:style="{'background-color': product.color}")
+    section(v-for="product in products",:style="{'background-color': product.color}")
       .container
         .row
           .col-sm-4
@@ -124,6 +124,8 @@ export default {
 </script>
 
 <style lang="sass">
+@import "../../assets/_mixin.sass"
+
 .page-product
   background-color: #222
   color: white

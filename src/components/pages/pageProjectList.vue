@@ -2,23 +2,7 @@
 .page.page-works.text-left
   .container
     .row
-      .col-sm-2.col-subnav
-        div
-          label.curp(@click="filter=''",:class="{'text-active': filter==''}") 全部
-        div
-          label.curp(@click="filter='曝鹿概念設計'") 
-            span(:class="{'text-active': filter=='曝鹿概念設計'}") 曝鹿概念設計
-        br
-        div
-          label.text-op 依類別
-        ul(v-for="f in filter_cata")
-          li(@click="filter=f") 
-            span(:class="{'text-active': filter==f}") {{f}}
-        div
-          label.text-op 依風格
-        ul(v-for="f in filter_style")
-          li(@click="filter=f") 
-            span(:class="{'text-active': filter==f}") {{f}}
+      sectionWorkFilter.col-sm-2
       .col-sm-10
         .row
           router-link.col-sm-3.col-work.animated.fadeIn(
@@ -34,18 +18,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import sectionWorkFilter from '@/components/sectionWorkFilter'
 export default {
   data () {
     return {
-      filter: "",
-      filter_cata: 
-        `品牌,影片 / 平面動態,視覺設計,介面 / 使用者體驗`.split(","),
-      filter_style: 
-        `插畫,優雅 / 平靜,大膽,豐富`.split(",")
+      
     }
   },
   computed: {
-    ...mapState(["works"]),
+    ...mapState(["works","filter"]),
     filtered_works(){
       return Object.keys(this.works)
         .map(o=>({id: o,work:this.works[o]}))
@@ -58,6 +39,9 @@ export default {
     }
   },
   methods:{
+  },
+  components:{
+    sectionWorkFilter
   }
 }
 
@@ -68,23 +52,12 @@ export default {
 
 .page-works
   padding-top: 120px
+  .col-sm-2
+    +rwd_sm
+      display: none
   .curp
     cursor: pointer
-  .col-subnav
-    line-height: 2.2
-    ul
-      padding-left: 0
-      margin-left: 0
-      list-style: none
-    li
-      cursor: pointer
-      +trans
-      span
-        padding: 3px 5px
-        padding-left: 0
-        +trans
-      &:hover span
-        color: $colorBlue
+  
   .container
     max-width: 1600px
   .col-work
@@ -105,6 +78,6 @@ export default {
     background-position: center center
     background-size: auto 110%
     transition: 0.5s
-    &:hover
+    &:hover,&:active,&:focus
       background-size: auto 120%
 </style>

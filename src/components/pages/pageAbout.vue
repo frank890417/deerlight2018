@@ -1,10 +1,10 @@
 <template lang="pug">
 .page.page-about
-  .container-fluid
+  section.container-fluid
     //- .cover(:style="cssbg('/static/關於/banner.png')")
     .cover
       video(src="/static/關於/Facebook cover.mp4" autoplay muted loop)
-  .container.container-info.text-left
+  section.container.container-info.text-left
     .row
       .col-sm-2
         h2 關於
@@ -119,7 +119,7 @@ export default {
     max-width: 1200px
   .cover
     width: 100%
-    height: 580px
+    max-height: 580px
     display: flex
     justify-content: center
     align-items: center
@@ -129,7 +129,7 @@ export default {
     
   h2
     font-size: 34px
-    font-weight: 600
+    font-weight: 500
     line-height: 1
     letter-spacing: 2.7
   h3

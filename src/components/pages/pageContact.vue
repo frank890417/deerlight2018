@@ -148,6 +148,8 @@ export default {
 </script>
 
 <style lang="sass">
+@import "../../assets/_mixin.sass"
+
 .page-contact
   // padding-top: 120px
   .container-fluid
@@ -159,6 +161,10 @@ export default {
     justify-content: center
     align-items: center
     overflow: hidden
+    +rwd_sm
+      height: 300px
+      background-position: center center
+      background-size: cover
   .section-tab
     background-color: #fff
     padding-top: 20px
@@ -168,8 +174,10 @@ export default {
       cursor: pointer
   .section-form
     padding-top: 60px
-    width: 490px
+    width: 100%
+    max-width: 490px
     padding-bottom: 60px
+      
 
   .el-select
     width: 100%

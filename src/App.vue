@@ -32,10 +32,12 @@ export default {
 
 #app
   font-family: 'Muli','Noto Sans TC','Avenir', Helvetica, Arial, sans-serif !important
-
+  overflow-x: hidden
 .all_pages_area
   min-height: 100vh
   padding-top: 112px
+  +rwd_sm
+    padding-top: 60px
 
 body
   -webkit-font-smoothing: antialiased
@@ -52,6 +54,7 @@ body
   background-color: #f8f8f8
   font-size: 16px
   font-weight: 500
+  
 html
   padding: 0 !important
   margin: 0 !important
@@ -137,6 +140,7 @@ a
 
 .page
   min-height: 100vh
+  
 
 .page-enter-active,.page-leave-active
   transition: 0.5s
