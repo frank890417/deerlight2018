@@ -52,6 +52,8 @@ export default {
 
 .page-works
   padding-top: 120px
+  +rwd_sm
+    padding-top: 60px
   .col-sm-2
     +rwd_sm
       display: none

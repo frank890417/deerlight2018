@@ -30,8 +30,8 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded
         router-link(to="/about") 關於
       li.nav-item(@click="toggleNav")
         router-link(to="/contact") 聯絡
-    .navbar-nav.hide(:class="{active: search_open}")
-      sectionWorkFilter( @click="toggleNav")
+    .navbar-nav.hide(:class="{active: search_open}", @click="toggleNav")
+      sectionWorkFilter
      
     //- ul.navbar-nav.mr-auto.mt-2.mt-md-0
     //-   li.nav-item.active
