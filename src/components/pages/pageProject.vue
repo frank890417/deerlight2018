@@ -29,10 +29,15 @@
           .col-sm-9
             h1 {{work.title}}
             .info.text-left
-              span.fas.fa-word
+              span
+                img.icon(src="/static/作品/author.svg")
               span  Jhane Chou
-              span.fas.fa-clock
+              span
+                img.icon(src="/static/作品/view.svg")
               span {{work.date.split(" ")[0]}}
+              span
+                img.icon(src="/static/作品/time.svg")
+              span {{work.view_count }}
               //- span.fas.fa-heart
               //- span  
             ul.text-left.list-content
@@ -89,8 +94,30 @@ import { mapState , mapGetters} from 'vuex'
 export default {
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      view_setted: false
     }
+  },
+  mounted(){  
+    setTimeout(()=>{
+      var viewRecord = window.firebase.database().ref('works/'+this.$route.params.id+"/view_count");
+      let seted = false
+      let _this = this
+      viewRecord.on("value", function(snapshot) {
+        // console.log("GGG"+snapshot.val());
+        let target = snapshot.val() || 0
+        if (!_this.view_setted){
+          _this.view_setted=true
+          setTimeout(()=>{
+            viewRecord.set( target+1 )
+
+          },100)
+        }
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+    },500)
+    // console.log("GGG"+viewRecord)
   },
   computed:{
     ...mapState(["works"]),
@@ -146,13 +173,16 @@ export default {
   // padding-bottom: 20vh
   padding-top: 0
   margin-top: 0
+
   .filter-tag
-    display: inline-block
-    margin-right: 20px
-    cursor: pointer
-    &:hover
-      color: $colorLinkBlue
+      display: inline-block
+      margin-right: 20px
+      cursor: pointer
+      &:hover
+        color: $colorLinkBlue
+
   .col-content
+   
     +rwd_sm
       display: none
   .label-content
@@ -271,14 +301,19 @@ export default {
 
 
   .content-area
-    max-width: 980px
+    // max-width: 980px
+    span:nth-child(2n+1)
+      margin-right: 0
     img
       // margin-top: 30px
       // margin-bottom: 30px
       width: 100%
       // min-height: 300px
       background-color: #eee
-
+      &.icon
+        width: 15px
+        background-color: transparent
+        margin-right: 0
   .content
     margin-top: 100px
     margin-bottom: 280px
