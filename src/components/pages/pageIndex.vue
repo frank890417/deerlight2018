@@ -59,7 +59,7 @@ export default {
       return this.slides[this.currentzSlideId]
     },
     grid_works(){
-      let fw = this.available_works.filter(w=>w.show_index).slice(0,16)
+      let fw = this.available_works.filter(w=>w.work.show_index).slice(0,16)
       if (fw.length){
         return fw
       }else{

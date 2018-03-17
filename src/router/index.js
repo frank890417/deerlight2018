@@ -44,7 +44,10 @@ let routes = [
   }, {
     path: '/project/:id',
     name: 'project',
-    component: pageProject
+    component: pageProject,
+    meta: {
+      noPaddingTop: true
+    }
   }, {
     path: '/contact',
     name: 'contact',

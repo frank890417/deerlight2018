@@ -6,7 +6,7 @@
           .cover(:style="cssbg(work.coverbg || work.cover)")
             //- router-link.btn-back(to="/") Back
             .yt(v-if="work.video")
-              iframe(id="ytplayer" type="text/html" width="800" height="450"
+              iframe(id="ytplayer" type="text/html"
               :src="work.video.replace('watch?v=','embed/').replace('&feature=youtu.be','')+'?showinfo=0&autoplay=1&repeat=1&loop=1&rel=0&controls=0&loop=1'"
               frameborder="0")
       .container.content-area
@@ -144,9 +144,11 @@ export default {
 
 .page-project
   // padding-bottom: 20vh
+  padding-top: 0
+  margin-top: 0
   .filter-tag
     display: inline-block
-    margin-right: 10px
+    margin-right: 20px
     cursor: pointer
     &:hover
       color: $colorLinkBlue
@@ -202,10 +204,32 @@ export default {
   .yt
     position: relative
     // box-shadow: 0px 0px 40px rgba(black,0.3)
-    top: 100px
+    top: 120px
+    width: 1280px
+    height: 720px
+    max-width: 100vw
+    position: relative
+    +rwd_md
+      width: 960px
+      height: auto
+      padding-bottom: 56.25%
+      // top: 0
+    +rwd_sm
+      width: 100%
+      height: auto
+      padding-bottom: 56.25%
+      top: 0
+
+    iframe
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+      background-color: transparent
     
   .content-area
-    padding-top: 50px
+    padding-top: 150px
   .btn-back
     position: fixed
     left: 0
@@ -225,8 +249,13 @@ export default {
   h3.more
     font-size: 18px
   .cover
-    height: 60vh
+    height: 100vh
     max-height: 854px
+    +rwd_sm
+      width: 100vw
+      height: auto
+      // padding-bottom: 56.25%
+      top: 0
     background-color: #eee
     background-position: center center
     // background-attachment: fixed

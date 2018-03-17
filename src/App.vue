@@ -3,7 +3,7 @@
   navbar
   transition(name="page" , mode="out-in")
     pageLoading(v-if="loading")
-  .all_pages_area
+  .all_pages_area(:class="{nopadding: this.$route.meta.noPaddingTop && !mobile}")
     transition(name="page" , mode="out-in")
       router-view(:key="$route.path")
   section_footer
@@ -19,7 +19,7 @@ export default {
     pageLoading
   },
   computed: {
-    ...mapState(['loading'])
+    ...mapState(['loading','mobile'])
   }
 }
 </script>
@@ -35,10 +35,15 @@ export default {
   overflow-x: hidden
 .all_pages_area
   min-height: 100vh
+  
   padding-top: 112px
   +rwd_sm
     padding-top: 60px
-
+  &.nopadding
+    padding-top: 0
+    
+    +rwd_sm
+      padding-top: 0
 body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale

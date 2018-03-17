@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     works: [],
     about: {},
+    mobile: window.innerWidth < 800,
     loading: true,
     filter: "",
     filter_cata:
@@ -30,7 +31,11 @@ export default new Vuex.Store({
     },
     setScrollTop(state,value){
       state.scrollTop=value
-    }
+    },
+    setMobile(state, value) {
+      state.mobile = value
+    },
+
   },
   getters: {
     available_works(state){

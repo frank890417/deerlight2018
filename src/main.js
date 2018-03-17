@@ -71,6 +71,7 @@ if (process.env.NODE_ENV=="production"){
 }
 
 
+
 //soft scroll
 import soft_scroll from 'monoame-softscroll'
 soft_scroll.init()
@@ -108,6 +109,13 @@ window.addEventListener("scroll",function (evt) {
   // console.log(this.window.scrollY)
   store.commit("setScrollTop", window.scrollY)
 })
+
+window.addEventListener("resize", function (evt) {
+  // console.log(this.window.scrollY)
+  store.commit("setMobile", window.innerWidth<800)
+})
+
+
 
 setTimeout(() => { 
   var worksRef = firebase.database().ref('works');

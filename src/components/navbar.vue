@@ -1,5 +1,7 @@
 <template lang="pug">
-nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(:class="{nav_show: nav_show || is_nav_fixed}")
+nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(
+  :class="{nav_show: nav_show || is_nav_fixed, transparent: is_nav_transparent && !mobile ,no_topbar: is_in_project}"
+)
   .container
     //- button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
     //-   span.navbar-toggler-icon
@@ -63,9 +65,15 @@ export default {
     },
     props: ['fixed'],
     computed:{
-      ...mapState(['scrollTop']),
+      ...mapState(['scrollTop','mobile']),
       is_nav_fixed(){
         return this.$route.path=="/" || this.$route.path=="/about" || this.$route.path=="/project" || this.$route.path=="/manage"
+      },
+      is_nav_transparent(){
+        return this.scrollTop==0 && this.$route.path.indexOf("/project/")!=-1
+      },
+      is_in_project(){
+        return this.$route.path.indexOf("/project/")!=-1
       }
     },
     methods: {
@@ -106,7 +114,16 @@ nav.navbar.navbar-default
   z-index: 100
   
   margin-top: -112px
-  
+  &.transparent
+    background-color: transparent
+    box-shadow: none
+    .logowraper
+      filter: contrast(50%) brightness(1000%)
+    li a,.navbar-brand .text
+      color: white
+    .router-link-active:before
+      background-color: rgba(white,0.3) !important
+      mix-blend-mode: overlay !important
   &.nav_show
     margin-top: 0px
   +rwd_sm
@@ -120,9 +137,15 @@ nav.navbar.navbar-default
     width: 100%
     height: 8px
     background-image: linear-gradient(to right, #88b4fd 22%, #5278d7)
-
+    opacity: 1
+    transition: opacity 0.5s
     +rwd_sm
       display: none
+  &.no_topbar
+    &:before
+      opacity: 0
+
+
   .container
     max-width: 1600px
     display: flex
