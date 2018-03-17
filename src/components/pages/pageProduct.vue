@@ -8,10 +8,12 @@
             p(v-html="product.description")
             .btns
               router-link.btn(v-for="btn in product.btns", 
-                    :class="{white: btn.bgcolor=='white' }",
+                    :class="{white: btn.bgcolor=='white',img: btn.img }",
                     :style="{color: btn.bgcolor=='white'?product.color:'white' }",
                     :to="btn.target||''",
-                    v-if="!link_out") {{ btn.label || '&nbsp;&nbsp;'}}
+                    v-if="!link_out") 
+                span {{ btn.label || '&nbsp;&nbsp;'}}
+                img(:src="btn.img")
           .col-sm-8.col-cover
             img(:src="product.cover")
 
@@ -48,8 +50,8 @@ export default {
           cover: "/static/產品/pic-2.png",
           btns: [
             {
-              label: "LINE STORE",
-              img: "",
+              label: "",
+              img: "/static/產品/line-store-button.svg",
               bgcolor: "white",
               target: "https://store.line.me/stickershop/author/89948",
               link_out: true
@@ -138,6 +140,12 @@ export default {
     border: solid 1px white
     border-radius: 3px
     margin-right: 10px
+
+    &.img
+      padding: 10px
+      
+    img
+      height: 30px
 
     &.white
       background-color: white

@@ -22,7 +22,7 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(
       i.fa.fa-search
     ul.navbar-nav(:class="{active: nav_open}")
       // Authentication Links
-      li.nav-item(@click="toggleNav")
+      li.nav-item(@click="toggleNav", v-if="mobile")
         router-link(to="/") 首頁
       li.nav-item.range(@click="toggleNav")
         router-link(to="/project") 作品

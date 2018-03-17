@@ -3,6 +3,7 @@
     section.container-fluid.container-slides
       .col-sm-12.slick.animated.fadeIn
         .cover(v-for="slide in slides", :style="cssbg(slide.cover)")
+          //- h1(v-html="slide.title")
     section.container-fluid
       .row.row-info
         router-link.btn-edit(to="/manage" )
@@ -70,16 +71,20 @@ export default {
   mounted(){
     this.slides=[
         {
-          cover: "/static/首頁/slider-1.png"
+          cover: "/static/首頁/slider-1.png",
+          title: "十二隻腳<br>曝鹿工作室聖誕賀卡"
         },
         {
-          cover: "/static/首頁/slider-2.png"
+          cover: "/static/首頁/slider-2.png",
+          title: ""
         },
         {
-          cover: "/static/首頁/slider-3.png"
+          cover: "/static/首頁/slider-3.png",
+          title: ""
         },
         {
-          cover: "/static/首頁/slider-4.png"
+          cover: "/static/首頁/slider-4.png",
+          title: ""
         }
       ]
   },

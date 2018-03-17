@@ -1,6 +1,7 @@
 <template lang="pug">
 .page.page-product-card
-  section.section-hero
+  section.container-fluid
+    .cover(:style="cssbg('/static/產品/一般類/banner.png')")
   section.section-card.left
     .row
       .col-sm-6
@@ -29,6 +30,18 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+
+.page-product-card
+  // padding-top: 120px
+  .container-fluid
+    padding: 0
+  .cover
+    width: 100%
+    height: 500px
+    display: flex
+    justify-content: center
+    align-items: center
+    overflow: hidden
 
 </style>
