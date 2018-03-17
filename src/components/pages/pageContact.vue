@@ -105,6 +105,7 @@ export default {
   methods: {
     send_contact_form(){
       var contactRecord = window.firebase.database().ref('contact_records');
+      
       contactRecord.push(this.contact_form_data).then(() => {
         // var workRef = window.firebase.database().ref('works/'+wid);
         // workRef.remove()

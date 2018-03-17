@@ -14,7 +14,7 @@
             .container
               .row
                 router-link.col-xs-3.col-sm-3.col-md-3.col-work.animated.fadeIn(
-                    v-for="(work,wid) in available_works", 
+                    v-for="(work,wid) in grid_works", 
                     :to="`/project/${work.id}`", 
                     :key="work.id"
                   )
@@ -57,6 +57,9 @@ export default {
     }),
     currentSlide(){
       return this.slides[this.currentzSlideId]
+    },
+    grid_works(){
+      return this.available_works.slice(0,16)
     }
   },
   mounted(){
