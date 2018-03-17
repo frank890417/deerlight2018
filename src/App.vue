@@ -71,9 +71,10 @@ h1, h2
   
 h1
   font-weight: 900
+  font-size: 60px
 
-h2.sectionTitle
-  font-size: 29.4px
+.sectionTitle
+  font-size: 30px
   margin-bottom: 74px
   position: relative
   display: inline-block
