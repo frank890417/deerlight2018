@@ -67,7 +67,7 @@ export default {
     computed:{
       ...mapState(['scrollTop','mobile']),
       is_nav_fixed(){
-        return this.$route.path=="/" || this.$route.path=="/about" || this.$route.path=="/project" || this.$route.path=="/manage"
+        return this.$route.path=="/project"
       },
       is_nav_transparent(){
         return this.scrollTop==0 && this.$route.path.indexOf("/project/")!=-1
@@ -148,6 +148,8 @@ nav.navbar.navbar-default
 
   .container
     max-width: 1600px
+    padding-left: 5vw
+    padding-right: 5vw
     display: flex
     justify-content: space-between
     
@@ -267,7 +269,7 @@ nav.navbar.navbar-default
         opacity: 1
         pointer-events: initial
     .nav-item
-      margin-right: 50px
+      margin-left: 80px
       +rwd_sm
         margin-right: 0
         text-align: left

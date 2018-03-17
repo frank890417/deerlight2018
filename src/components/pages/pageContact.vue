@@ -18,18 +18,17 @@
           h3 適用於一般留言或是一般交流
           br
           p 我們由衷地感謝你的支持，也期待能夠為你多做些什麼。想與我們聊聊？或者分享你的想法，都可以留言給我們！<br><br>曝鹿設計團隊　敬上
-          br
-          el-form.form(label-width="90px")
+          el-form.form(label-width="50px")
             el-form-item(label="姓名")
               el-input(name="name" placeholder="名字" v-model="contact_form_data.name")
             el-form-item(label="信箱")
               el-input(name="email" placeholder="youtmail@gmail.com" v-model="contact_form_data.mail")
-            el-form-item(label="")
+            el-form-item.item-checkbox(label="")
               el-checkbox(name="subscribe" v-model="contact_form_data.subscribe") 我願意收到 Deerlight 的優惠訊息
             el-form-item(label="主旨")
               el-input(name="title" placeholder="標題" v-model="contact_form_data.title")
             el-form-item(label="留言")
-              el-input(name="content" type="textarea" height="50" placeholder="內文" v-model="contact_form_data.content")
+              el-input(name="content" type="textarea" rows=8 placeholder="內文" v-model="contact_form_data.content")
             el-button.btn.black.float-right(@click="send_contact_form") 送出
     section.container.text-left.section-form.form-quote(v-if="currentSection=='quote'")
       .row
@@ -37,19 +36,20 @@
           h3 設計委託或索取報價，可在此作為初步諮詢
           br
           p 如果有任何委託，或其他想進一步了解的部分，都請你不吝來信或利用表單讓我們瞭解你的想法和需求 :)<br><br>曝鹿設計團隊　敬上
-          br
-          el-form.form(label-width="90px")
+          el-form.form(label-width="50px")
             el-form-item(label="姓名")
               el-input(name="name" placeholder="名字" v-model="contact_form_quote_data.name")
             el-form-item(label="信箱")
               el-input(name="email" placeholder="youtmail@gmail.com" v-model="contact_form_quote_data.mail")
-            el-form-item(label="")
+            el-form-item.item-checkbox(label="")
               el-checkbox(name="subscribe" v-model="contact_form_quote_data.subscribe") 我願意收到 Deerlight 的優惠訊息
             el-form-item(label="主旨")
               el-input(name="title" placeholder="您的需求主旨" v-model="contact_form_quote_data.title")
             el-form-item(label="需求")
-              el-input(name="content" type="textarea" height="50" placeholder="需求描述" v-model="contact_form_quote_data.content")
+              el-input(name="content" type="textarea" rows=8 placeholder="需求描述" v-model="contact_form_quote_data.content")
             el-form-item(label="類型")
+              template
+                label(style="padding-left: 30px") 您的需求類型（可複選）
               el-checkbox-group(v-model="contact_form_quote_data.type")
                 div(v-for="type in request_types")
                   el-checkbox(:label="type")
@@ -190,8 +190,11 @@ export default {
     width: 100%
     max-width: 490px
     padding-bottom: 60px
-      
-
+    h3,p,label
+      opacity: 0.8
+      color: rgba(black,0.8)
+    p
+      margin-bottom: 90px
   .el-select
     width: 100%
   .checkbox-term
@@ -206,7 +209,14 @@ export default {
         vertical-align: top
         white-space: pre-wrap
         line-height: 1.5
-        
+  .el-form-item__label
+    text-align: left
+  .el-checkbox
+    margin-left: 30px
+  .item-checkbox
+    margin-bottom: 20px
+    .el-checkbox
+      top: -25px
         
 
 </style>
