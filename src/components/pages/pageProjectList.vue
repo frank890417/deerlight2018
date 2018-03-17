@@ -2,13 +2,15 @@
 .page.page-works.text-left
   .container
     .row
-      sectionWorkFilter.col-sm-2
+      .col-sm-2(v-if="!mobile")
+      sectionWorkFilter.col-sm-2.col-work-filter
       .col-sm-10
         .row
-          router-link.col-sm-3.col-work.animated.fadeIn(
+          router-link.col-sm-6.col-sm-4.col-md-4.col-lg-3.col-work.animated.fadeIn(
             v-for="(item) in filtered_works",
             :to="`/project/${item.id}`", 
-            :key="item.work.title")
+            :key="item.work.title",
+            :class="{'col-sm-12': mobile}")
             .work
               .cover(:style="cssbg(item.work.cover)")
               h3 {{item.work.title}}
@@ -26,7 +28,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["works","filter"]),
+    ...mapState(["works","filter","mobile"]),
     filtered_works(){
       return Object.keys(this.works)
         .map(o=>({id: o,work:this.works[o]}))
@@ -52,9 +54,17 @@ export default {
 
 .page-works
   padding-top: 120px
+
+  .col-work-filter
+    +range_width(800px)
+      position: fixed
+
+  
   +rwd_sm
     padding-top: 60px
-  .col-sm-2
+  .col-work-filter
+    top: calc( 50% + 56px)
+    transform: translateY(-50%)
     +rwd_sm
       display: none
   .curp

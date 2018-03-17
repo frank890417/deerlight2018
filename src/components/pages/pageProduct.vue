@@ -132,7 +132,7 @@ export default {
     font-weight: 700
     margin-bottom: 48px
   .container
-    padding: 100px 0px
+    padding: 100px 20px
   .btn
     padding: 10px 30px
     border: solid 1px white

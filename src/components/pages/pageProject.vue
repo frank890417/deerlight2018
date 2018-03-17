@@ -254,6 +254,7 @@ export default {
     +rwd_sm
       width: 100vw
       height: auto
+      min-height: 400px
       // padding-bottom: 56.25%
       top: 0
     background-color: #eee
@@ -270,6 +271,7 @@ export default {
 
 
   .content-area
+    max-width: 980px
     img
       // margin-top: 30px
       // margin-bottom: 30px
