@@ -29,7 +29,7 @@
               el-input(name="title" placeholder="標題" v-model="contact_form_data.title")
             el-form-item(label="留言")
               el-input(name="content" type="textarea" rows=8 placeholder="內文" v-model="contact_form_data.content")
-            el-button.btn.black.float-right(@click="send_contact_form") 送出
+            el-button.btn.black.hover-blue.float-right(@click="send_contact_form") 送出
     section.container.text-left.section-form.form-quote(v-if="currentSection=='quote'")
       .row
         .col-sm-12
@@ -58,8 +58,8 @@
               el-select(name="budget" placeholder="預算範圍" v-model="contact_form_quote_data.budget")
                 el-option(v-for="type in budget_types", :value="type") {{type}}
               el-checkbox.checkbox-term(v-model="contact_form_quote_data.ref_agree")
-                span 索取報價表參考。我了解報價表參考非正式報價，最終報價以正式報價表為準；報價表參考時效為一週，且不得私自或公開使用
-            el-button.btn.black.float-right(@click="send_quote_form") 送出
+                span.mline_label 索取報價表參考。我了解報價表參考非正式報價，最終報價以正式報價表為準；報價表參考時效為一週，且不得私自或公開使用
+            el-button.btn.black.hover-blue.float-right(@click="send_quote_form") 送出
 </template>
 
 <script>
@@ -217,6 +217,9 @@ export default {
     margin-bottom: 20px
     .el-checkbox
       top: -25px
-        
+  .mline_label
+    line-height: 2
+    position: relative
+    top: -5px
 
 </style>

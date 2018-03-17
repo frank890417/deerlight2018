@@ -36,7 +36,10 @@ let routes = [
   }, {
     path: '/product/card',
     name: 'productCard',
-    component: pageProductCard
+    component: pageProductCard,
+    meta: {
+      noPaddingTop: true
+    }
   }, {
     path: '/manage',
     name: 'project_edit',

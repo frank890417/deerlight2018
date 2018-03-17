@@ -89,6 +89,8 @@ h1
     height: 20px
     background-color: #c1ceee
     mix-blend-mode: multiply
+h3
+  line-height: 1.5
     
 h4
   font-size: 20px
@@ -128,15 +130,32 @@ p
 a
   color: $colorBlue
 
-.btn.black
-  background-color: black
-  color: white
+.btn
   // border: solid 1px black
   border-radius: 5px
-  padding: 15px 60px
-  +trans
+  padding: 10px 50px
+  box-shadow: 0px 5px 15px rgba(black,0.2)
   &:hover
-    background-color: #577edb 
+    background-color: #ddd
+  &.black
+    background-color: black
+    color: white
+  &.white
+    background-color: white
+    color: black
+    &:hover
+      background-color: #fafafa
+  &.transparent
+    background-color: transparent
+    border: solid 1px black
+    &:hover
+      background-color: rgba(white,0.1)
+      color: #eee
+
+  +trans
+  &.hover-blue
+    &:hover
+      background-color: #577edb 
     // color: black
 .text-op
   opacity: 0.5

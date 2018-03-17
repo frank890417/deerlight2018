@@ -70,10 +70,10 @@ export default {
         return this.$route.path=="/project"
       },
       is_nav_transparent(){
-        return this.scrollTop==0 && this.$route.path.indexOf("/project/")!=-1
+        return this.scrollTop==0 && (this.$route.path.indexOf("/project/")!=-1 || this.$route.path.indexOf("/product/card")!=-1)
       },
       is_in_project(){
-        return this.$route.path.indexOf("/project/")!=-1
+        return (this.$route.path.indexOf("/project/")!=-1 || this.$route.path.indexOf("/product/card")!=-1)
       }
     },
     methods: {
@@ -100,7 +100,7 @@ export default {
 @import "../assets/_mixin.sass"
 
 nav.navbar.navbar-default
-  transition: 0.5s
+  transition: opacity 0.5s, margin-top 0.5s, width 0s
   box-shadow: 0px 0px 10px rgba(black,0.3)
   border-bottom: rgba(white,0)
   padding-top: 5px
