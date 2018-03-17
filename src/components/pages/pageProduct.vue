@@ -1,127 +1,48 @@
 <template lang="pug">
   .page.page-product.text-left
-    section(v-for="product in products",:style="{'background-color': product.color}")
+    section(v-for="p in products",:style="{'background-color': p.color}")
       .container
         .row
           .col-sm-4
-            h2 {{product.name }}
-            p(v-html="product.description")
+            h2 {{p.name }}
+            p(v-html="p.description")
             .btns
-              router-link.btn(v-for="btn in product.btns", 
-                    :class="{transparent: btn.bgcolor=='transparent', white: btn.bgcolor=='white',img: btn.img }",
-                    :style="{color: btn.bgcolor=='white'?product.color:'white' }",
-                    :to="btn.target||''",
-                    v-if="!link_out") 
-                span {{ btn.label || '&nbsp;&nbsp;'}}
-                img(:src="btn.img")
+              span(v-for="btn in p.btns")
+                router-link.btn(
+                  :class="{transparent: btn.bgcolor=='transparent', white: btn.bgcolor=='white',img: btn.img }",
+                  :style="{color: btn.bgcolor=='white'?p.color:'white' }",
+                  :to="btn.target||''",
+                  v-if="!(linkout(btn.target))") 
+                  span {{ btn.label || '&nbsp;&nbsp;'}}
+                  img(:src="btn.img")
+                a.btn(
+                  :class="{transparent: btn.bgcolor=='transparent', white: btn.bgcolor=='white',img: btn.img }",
+                  :style="{color: btn.bgcolor=='white'?p.color:'white' }",
+                  :href="btn.target||''",
+                  target="_blank",
+                  v-else)
+                  span {{ btn.label || '&nbsp;&nbsp;'}}
+                  img(:src="btn.img")
           .col-sm-8.col-cover
-            img(:src="product.cover")
+            img(:src="p.cover")
 
 
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   data(){
     return {
-      products: [
-        {
-          name: "Dsaving Pro",
-          show: true,
-          color: "#472b95",
-          description: "具有設計感的介面及簡單易懂的體驗，讓記帳不再只是死板的數字，目標也變得更平易近人了。<br><br>陪伴使用者理財規劃，一步一步地完成目標，一起培養駕馭金錢的能力吧！",
-          cover: "/static/產品/pic-1.png",
-          btns: [
-            {
-              img: "",
-              bgcolor: "white",
-              target: "/",
-            },{
-              label: "more",
-              img: "",
-              target: "/product/app",
-              bgcolor: "transparent"
-            }
-          ]
-        },
-        {
-          name: "貼圖專區",
-          show: true,
-          color: "#f5b25b",
-          description: "具有設計感的介面及簡單易懂的體驗，讓記帳不再只是死板的數字，目標也變得更平易近人了。<br><br>陪伴使用者理財規劃，一步一步地完成目標，一起培養駕馭金錢的能力吧！",
-          cover: "/static/產品/pic-2.png",
-          btns: [
-            {
-              label: "",
-              img: "/static/產品/line-store-button.svg",
-              bgcolor: "white",
-              target: "https://store.line.me/stickershop/author/89948",
-              link_out: true
-            }
-          ]
-        },
-        {
-          name: "福利專區",
-          show: true,
-          color: "#77a958",
-          description: "具有設計感的介面及簡單易懂的體驗，讓記帳不再只是死板的數字，目標也變得更平易近人了。<br><br>陪伴使用者理財規劃，一步一步地完成目標，一起培養駕馭金錢的能力吧！",
-          cover: "/static/產品/pic-3.png",
-          btns: [
-            {
-              label: "BUY!",
-              img: "",
-              bgcolor: "white",
-              target: "/",
-            },{
-              label: "more",
-              img: "",
-              target: "/",
-              bgcolor: "transparent"
-            }
-          ]
-        },
-        {
-          name: "聖誕賀卡系列",
-          show: true,
-          color: "#e05852",
-          description: "具有設計感的介面及簡單易懂的體驗，讓記帳不再只是死板的數字，目標也變得更平易近人了。<br><br>陪伴使用者理財規劃，一步一步地完成目標，一起培養駕馭金錢的能力吧！",
-          cover: "/static/產品/pic-4.png",
-          btns: [
-            {
-              label: "FREE!",
-              img: "",
-              bgcolor: "white",
-              target: "/product/card",
-            },{
-              label: "more",
-              img: "",
-              target: "/product/card",
-              bgcolor: "transparent"
-            }
-          ]
-        },
-        {
-          name: "烏拉拉系列",
-          show: true,
-          color: "#5c98e9",
-          description: "具有設計感的介面及簡單易懂的體驗，讓記帳不再只是死板的數字，目標也變得更平易近人了。<br><br>陪伴使用者理財規劃，一步一步地完成目標，一起培養駕馭金錢的能力吧！",
-          cover: "/static/產品/pic-5.png",
-          btns: [
-            {
-              label: "BUY!",
-              img: "",
-              bgcolor: "white",
-              target: "/",
-            },{
-              label: "more",
-              img: "",
-              target: "/",
-              bgcolor: "transparent"
-            }
-          ]
-        }
-
-      ]
+    }
+  },
+  computed: {
+    ...mapState(['products'])
+  },
+  methods: {
+    linkout(url){
+      return (""+url).indexOf("http")!=-1
     }
   }
 

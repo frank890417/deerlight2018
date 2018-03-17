@@ -131,4 +131,9 @@ setTimeout(() => {
     store.commit("setAbout", snapshot.val())
   });
 
+  var productRef = firebase.database().ref('products');
+  productRef.on('value', function (snapshot) {
+    store.commit("setProducts", snapshot.val())
+  });
+
 }, 100);

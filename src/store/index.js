@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     works: [],
     about: {},
+    products: {},
     mobile: window.innerWidth < 800,
     loading: true,
     filter: "",
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setAbout(state, value) {
       state.about = value
+    },
+    setProducts(state,value){
+      state.products = value
     },
     setLoading(state,value){
       state.loading=value
