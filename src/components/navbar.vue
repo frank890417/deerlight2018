@@ -82,15 +82,16 @@ export default {
             this.search_open=false;
             $(".navbar-collapse").collapse('hide');
         },
-    },
+    }, 
     components: {
       sectionWorkFilter
     },
     watch: {
       scrollTop(){
-        let delta = this.scrollTop - this.last_scrollTop
+        let current = this.scrollTop>=0?this.scrollTop: 0
+        let delta = current - this.last_scrollTop
         this.nav_show = delta < 0
-        this.last_scrollTop = this.scrollTop
+        this.last_scrollTop = current
       }
     }
 }
@@ -100,7 +101,7 @@ export default {
 @import "../assets/_mixin.sass"
 
 nav.navbar.navbar-default
-  transition: opacity 0.5s, margin-top 0.5s, width 0s
+  transition: opacity 0.5s, margin-top 0.5s, width 0s,background-color 0.5s
   box-shadow: 0px 0px 10px rgba(black,0.3)
   border-bottom: rgba(white,0)
   padding-top: 5px
