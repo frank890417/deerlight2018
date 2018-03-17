@@ -36,6 +36,11 @@ Vue.mixin({
       }
       // console.log(result)
       return result
+    }, setFilterToPage(tag) {
+      if (this.$route.path != "/project") {
+        this.$router.push("/project")
+      }
+      store.commit("setFilter",tag)
     }
   }
 })

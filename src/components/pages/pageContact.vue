@@ -103,7 +103,15 @@ export default {
     }
   },
   methods: {
+    checkEmpty(obj){
+      let result = Object.values(obj).filter(t=>(typeof t) =='string').map(o=>o!="").reduce((all,now)=>all&&now,true)
+      return result
+    },
     send_contact_form(){
+      if (!this.checkEmpty(this.contact_form_data)){
+        this.$message.warning("請填寫完整資料後再送出！")
+        return false
+      }
       var contactRecord = window.firebase.database().ref('contact_records');
       
       contactRecord.push(this.contact_form_data).then(() => {
@@ -123,6 +131,10 @@ export default {
       })
       
     },send_quote_form(){
+      if (!this.checkEmpty(this.contact_form_quote_data)){
+        this.$message.warning("請填寫完整資料後再送出！")
+        return false
+      }
       var contactRecordQuote = window.firebase.database().ref('contact_records_quote');
       contactRecordQuote.push(this.contact_form_quote_data).then(() => {
         // var workRef = window.firebase.database().ref('works/'+wid);

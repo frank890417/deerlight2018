@@ -125,12 +125,13 @@ a
 .btn.black
   background-color: black
   color: white
-  border: solid 1px black
+  // border: solid 1px black
   border-radius: 5px
   padding: 15px 60px
+  +trans
   &:hover
-    background-color: transparent
-    color: black
+    background-color: #577edb 
+    // color: black
 .text-op
   opacity: 0.5
 .text-active

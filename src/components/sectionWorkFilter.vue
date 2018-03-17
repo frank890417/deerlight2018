@@ -1,20 +1,20 @@
 <template lang="pug">
 .col-subnav
   div
-    label.curp(@click="setFilter('')",:class="{'text-active': filter==''}") 全部
+    label.curp(@click="setFilterToPage('')",:class="{'text-active': filter==''}") 全部
   div
-    label.curp(@click="setFilter('曝鹿概念設計')") 
+    label.curp(@click="setFilterToPage('曝鹿概念設計')") 
       span(:class="{'text-active': filter=='曝鹿概念設計'}") 曝鹿概念設計
   br
   div
     label.text-op 依類別
   ul(v-for="f in filter_cata")
-    li(@click="setFilter(f)") 
+    li(@click="setFilterToPage(f)") 
       span(:class="{'text-active': filter==f}") {{f}}
   div
     label.text-op 依風格
   ul(v-for="f in filter_style")
-    li(@click="setFilter(f)") 
+    li(@click="setFilterToPage(f)") 
       span(:class="{'text-active': filter==f}") {{f}}
 </template>
 
@@ -28,7 +28,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setFilter'])
+    
+     ...mapMutations(['setFilter'])
+   
   },
   computed: {
     ...mapState(['filter','filter_cata','filter_style'])

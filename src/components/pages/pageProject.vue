@@ -7,7 +7,7 @@
             //- router-link.btn-back(to="/") Back
             .yt(v-if="work.video")
               iframe(id="ytplayer" type="text/html" width="800" height="450"
-              :src="work.video.replace('watch?v=','embed/').replace('&feature=youtu.be','')+'?showinfo=0&autoplay=1&repeat=1&loop=1&rel=0'"
+              :src="work.video.replace('watch?v=','embed/').replace('&feature=youtu.be','')+'?showinfo=0&autoplay=1&repeat=1&loop=1&rel=0&controls=0&loop=1'"
               frameborder="0")
       .container.content-area
         //- .row(v-if="work")
@@ -38,10 +38,10 @@
             ul.text-left.list-content
               li 
                 span.label-content 類別
-                span(v-for="t in work.cata") {{t}}
+                .filter-tag(v-for="t in work.cata", @click="setFilterToPage(t)") {{t}}
               li 
                 span.label-content 類型
-                span(v-for="t in work.type") {{t}}
+                .filter-tag(v-for="t in work.type", @click="setFilterToPage(t)") {{t}}
               li 
                 span.label-content 時間
                 span {{work.date.split("-")[0]}}
@@ -144,6 +144,12 @@ export default {
 
 .page-project
   // padding-bottom: 20vh
+  .filter-tag
+    display: inline-block
+    margin-right: 10px
+    cursor: pointer
+    &:hover
+      color: $colorLinkBlue
   .col-content
     +rwd_sm
       display: none
@@ -250,70 +256,70 @@ export default {
     font-weight: 600
 
 
-.row-nav
-  padding: 0
-  margin-top: 30px
-  height: 235px
-  +rwd_sm
-    flex-direction: column
-    height: initial
-    
-
-.col-nav
-  cursor: pointer
-  background-color: #eee
-  background-size: cover
-  height: 100%
-  flex: 1
-  background-position: center center
-  color: transparent
-  padding: 0
-  tranisiton: 0.5s
-  display: flex
-  justify-content: flex-end
-  align-items: flex-start
-  flex-direction: column
-  padding: 35px 30px
-
-  position: relative
-
-  +rwd_sm
+  .row-nav
+    padding: 0
+    margin-top: 30px
     height: 235px
+    +rwd_sm
+      flex-direction: column
+      height: initial
+      
 
-  &>*
-    flex: 1
-    flex-shrink: 0
-    flex-grow: 0
-  // margin: -15px
-  // width: calc( 100% + 30px )
-  &:hover,&:active,&:focus
-    text-decoration: none !important
-  h3
-    position: relative
-    z-index: 3
-    transition: 0.5s
-    text-decoration: none
-    font-size: 18px
-    width: 100%
-    text-align: left
-    &.cata
-      opacity: 0.5
-
-  &:hover,&:active,&:focus
-    color: white
-    &:before
-      opacity: 0.7
-
-  &:before
-    transition: 0.5s
-    content: ""
-    display: block
-    position: absolute
-    width: 100%
+  .col-nav
+    cursor: pointer
+    background-color: #eee
+    background-size: cover
     height: 100%
-    left: 0
-    top: 0
-    background-color: rgba(black,1)
-    opacity: 0
+    flex: 1
+    background-position: center center
+    color: transparent
+    padding: 0
+    tranisiton: 0.5s
+    display: flex
+    justify-content: flex-end
+    align-items: flex-start
+    flex-direction: column
+    padding: 35px 30px
+
+    position: relative
+
+    +rwd_sm
+      height: 235px
+
+    &>*
+      flex: 1
+      flex-shrink: 0
+      flex-grow: 0
+    // margin: -15px
+    // width: calc( 100% + 30px )
+    &:hover,&:active,&:focus
+      text-decoration: none !important
+    h3
+      position: relative
+      z-index: 3
+      transition: 0.5s
+      text-decoration: none
+      font-size: 18px
+      width: 100%
+      text-align: left
+      &.cata
+        opacity: 0.5
+
+    &:hover,&:active,&:focus
+      color: white
+      &:before
+        opacity: 0.7
+
+    &:before
+      transition: 0.5s
+      content: ""
+      display: block
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+      background-color: rgba(black,1)
+      opacity: 0
 
 </style>
