@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded
+nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(:class="{nav_show: nav_show}")
   .container
     //- button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
     //-   span.navbar-toggler-icon
@@ -56,7 +56,9 @@ export default {
     data() {
       return {
         nav_open: false,
-        search_open: false
+        search_open: false,
+        last_scrollTop: 0,
+        nav_show: true
       }
     },
     props: ['fixed'],
@@ -72,6 +74,13 @@ export default {
     },
     components: {
       sectionWorkFilter
+    },
+    watch: {
+      scrollTop(){
+        let delta = this.scrollTop - this.last_scrollTop
+        this.nav_show = delta < 0
+        this.last_scrollTop = this.scrollTop
+      }
     }
 }
 </script>
@@ -92,6 +101,11 @@ nav.navbar.navbar-default
   box-sizing: border-box
   background-color: #fff
   z-index: 100
+  
+  margin-top: -112px
+  
+  &.nav_show
+    margin-top: 0px
   +rwd_sm
     padding: 0
     height: 60px

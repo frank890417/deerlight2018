@@ -98,6 +98,12 @@ firebase.initializeApp(config);
 console.log(firebase)
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 window.ui=ui
+
+window.addEventListener("scroll",function (evt) {
+  // console.log(this.window.scrollY)
+  store.commit("setScrollTop", window.scrollY)
+})
+
 setTimeout(() => { 
   var worksRef = firebase.database().ref('works');
   worksRef.on('value', function (snapshot) {

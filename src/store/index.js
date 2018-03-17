@@ -11,7 +11,8 @@ export default new Vuex.Store({
     filter_cata:
       `品牌,影片 / 平面動態,視覺設計,介面 / 使用者體驗`.split(","),
     filter_style:
-      `插畫,優雅 / 平靜,大膽,豐富`.split(",")
+      `插畫,優雅 / 平靜,大膽,豐富`.split(","),
+    scrollTop: 0
   },
   mutations: {
     setWorks(state, value){
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setFilter(state, value) {
       state.filter = value
+    },
+    setScrollTop(state,value){
+      state.scrollTop=value
     }
   },
   getters: {
