@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(:class="{nav_show: nav_show}")
+nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(:class="{nav_show: nav_show || is_nav_fixed}")
   .container
     //- button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
     //-   span.navbar-toggler-icon
@@ -58,12 +58,15 @@ export default {
         nav_open: false,
         search_open: false,
         last_scrollTop: 0,
-        nav_show: true
+        nav_show: true,
       }
     },
     props: ['fixed'],
     computed:{
-      ...mapState(['scrollTop'])
+      ...mapState(['scrollTop']),
+      is_nav_fixed(){
+        return this.$route.path=="/" || this.$route.path=="/about" || this.$route.path=="/project" || this.$route.path=="/manage"
+      }
     },
     methods: {
         toggleNav(){

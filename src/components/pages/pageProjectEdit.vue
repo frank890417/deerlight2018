@@ -19,7 +19,8 @@
           ul.list-group.text-left
             li.list-group-item(v-for="(w,wid) in works", @click="nowId=wid", :class="{active:nowId==wid}")
               .row
-                .col-10 {{w.title}}
+                .col-10 {{w.title}} 
+                  span {{w.show_index?"✓":""}}
                   //- span(v-if="!w.show") (草稿)
                   span
                     el-switch.float-right(v-model="w.show")
@@ -45,6 +46,8 @@
                   el-form-item(label="版型")
                     el-select(v-model="work.version")
                       el-option(:value="c",:label="c", v-for="c in ['平面類','介面類','影片類']", :key="c")
+                  el-form-item(label="首頁顯示✓")
+                    el-switch(v-model="work.show_index")
                   el-form-item(label="作者")
                     el-input(v-model="work.author")
                   el-form-item(label="日期")
@@ -138,8 +141,8 @@ export default {
     return {
       nowId: -1,
       user: null,
-      defaut_hashtags: ["品牌","介面","使用者體驗","影片","平面動態"],
-      defaut_types: ["電商","服飾","無"]
+      defaut_hashtags: ["品牌","影片 / 平面動態","視覺設計","介面 / 使用者體驗"],
+      defaut_types: ["插畫","優雅 / 平靜","大膽" , "豐富", "電商","曝鹿概念設計"]
     }
   },
   mounted(){
