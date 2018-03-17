@@ -30,18 +30,19 @@
         h2 成員
       .col-sm-10
         .row.nopadding
-          .col-sm-6.col-member(v-for="member in members")
+          .col-sm-6.col-member(v-for="member in about.members")
             .member_logo(:style="cssbg(member.logo)")
             h3 {{member.name}}
             h4 {{member.position}}
             p(v-html="member.description")
+            social_icons(:social_data="member.social")
       hr
     .row.row-client
       .col-sm-2
         h2 合作及客戶
       .col-sm-10
         .row.nopadding
-          .col-sm-6.col-client(v-for="client in clients")
+          .col-sm-6.col-client(v-for="client in about.clients")
             .logo
               img(:src="client.logo")
             .info
@@ -53,60 +54,89 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import social_icons from '../social_icons'
+
 export default {
+  
   data(){
     return {
-      members: [
-        {
-          logo: "/static/關於/pic-1.png",
-          name: "周妙音 Jhane Chou",
-          position: "創辦人及設計總監",
-          description: "出生於 1994 年，擅長視覺設計、介面設計、影像影視製作，現於各司及新創擔任品牌顧問及介面設計師。"
-        },
-        {
-          logo: "/static/關於/pic-2.png",
-          name: "謝亞政 Samuel Hsieh",
-          position: "共同創辦人及打雜和遊手好閒的APP工程師",
-          description: "出生於 1993 年，擅長Android APP 設計、吹豎笛。"
-        },
-        {
-          logo: "/static/關於/pic-3.png",
-          name: "謝銘勳 Mingxun Hsieh",
-          position: "平面、動態影像設計師",
-          description: "出生於 1999 年，因爲繪畫進而對平面設計產生興趣，高二開始獨立接案至今，類型包含動態設計、平面設計、插畫、影音剪輯等。"
-        },
-        {
-          logo: "/static/關於/pic-4.png",
-          name: "周宜君 Jhinny Chou",
-          position: "設計粗心者",
-          description: "設計粗心者，即將越級打怪 la<br>姐姐帶我打怪囉！"
-        }
-      ],
-      clients: [
-        {
-          logo: "/static/關於/company-1-normal.svg",
-          name: "YOSGO　優市股份有限公司",
-          description: "以社群為核心的商務模式及用戶為主導的產業生態",
-          main: "代表專案"
-        },{
-          logo: "/static/關於/company-1-normal.svg",
-          name: "YOSGO　優市股份有限公司",
-          description: "以社群為核心的商務模式及用戶為主導的產業生態",
-          main: "代表專案"
-        },{
-          logo: "/static/關於/company-1-normal.svg",
-          name: "YOSGO　優市股份有限公司",
-          description: "以社群為核心的商務模式及用戶為主導的產業生態",
-          main: "代表專案"
-        },{
-          logo: "/static/關於/company-1-normal.svg",
-          name: "YOSGO　優市股份有限公司",
-          description: "以社群為核心的商務模式及用戶為主導的產業生態",
-          main: "代表專案"
-        }
-      ]
+      // members: [
+      //   {
+      //     logo: "/static/關於/pic-1.png",
+      //     name: "周妙音 Jhane Chou",
+      //     position: "創辦人及設計總監",
+      //     description: "出生於 1994 年，擅長視覺設計、介面設計、影像影視製作，現於各司及新創擔任品牌顧問及介面設計師。",
+      //     social: {
+      //       behance: "https://www.behance.net/deerlight",
+      //       dribbble: "http://deerlight.dribbble.com/",
+      //       facebook: "https://www.facebook.com/Jhane.Deerlight"
+      //     }
+      //   },
+      //   {
+      //     logo: "/static/關於/pic-2.png",
+      //     name: "謝亞政 Samuel Hsieh",
+      //     position: "共同創辦人及打雜和遊手好閒的APP工程師",
+      //     description: "出生於 1993 年，擅長Android APP 設計、吹豎笛。",
+      //     social: {
+      //       facebook: "https://www.facebook.com/profile.php?id=100000228102803",
+      //       googleplay: "https://play.google.com/store/apps/developer?id=Samuel_Hsieh",
+      //       github: "https://github.com/Samuel-Hsieh"
+      //     }
+      //   },
+      //   {
+      //     logo: "/static/關於/pic-3.png",
+      //     name: "謝銘勳 Mingxun Hsieh",
+      //     position: "平面、動態影像設計師",
+      //     description: "出生於 1999 年，因爲繪畫進而對平面設計產生興趣，高二開始獨立接案至今，類型包含動態設計、平面設計、插畫、影音剪輯等。",
+      //     social: {
+      //       behance: "https://www.behance.net/k526780kk9cf63",
+      //       dribbble: "https://dribbble.com/k526780kk9",
+      //       facebook: "https://www.facebook.com/profile.php?id=100000706842203",
+      //       artisan: "https://www.artstation.com/user-5252"
+      //     }
+      //   },
+      //   {
+      //     logo: "/static/關於/pic-4.png",
+      //     name: "周宜君 Jhinny Chou",
+      //     position: "設計粗心者",
+      //     description: "設計粗心者，即將越級打怪 la<br>姐姐帶我打怪囉！",
+      //     social: {
+      //       behance: "https://www.behance.net/a29034497ca0d"
+      //     }
+      //   }
+      // ],
+      // clients: [
+      //   {
+      //     logo: "/static/關於/company-1-normal.svg",
+      //     name: "YOSGO　優市股份有限公司",
+      //     description: "以社群為核心的商務模式及用戶為主導的產業生態",
+      //     main: "代表專案"
+      //   },{
+      //     logo: "/static/關於/company-1-normal.svg",
+      //     name: "YOSGO　優市股份有限公司",
+      //     description: "以社群為核心的商務模式及用戶為主導的產業生態",
+      //     main: "代表專案"
+      //   },{
+      //     logo: "/static/關於/company-1-normal.svg",
+      //     name: "YOSGO　優市股份有限公司",
+      //     description: "以社群為核心的商務模式及用戶為主導的產業生態",
+      //     main: "代表專案"
+      //   },{
+      //     logo: "/static/關於/company-1-normal.svg",
+      //     name: "YOSGO　優市股份有限公司",
+      //     description: "以社群為核心的商務模式及用戶為主導的產業生態",
+      //     main: "代表專案"
+      //   }
+      // ]
     }
     
+  },
+  computed: {
+    ...mapState(['about'])
+  },
+  components: {
+    social_icons
   }
 }
 </script>
@@ -164,6 +194,8 @@ export default {
     background-position: center center
   .col-member
     margin-bottom: 80px
+    p
+      min-height: 5em
   .container-info
     .row
       padding: 100px 0px 

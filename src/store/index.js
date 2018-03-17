@@ -6,6 +6,7 @@ export default new Vuex.Store({
 
   state: {
     works: [],
+    about: {},
     loading: true,
     filter: "",
     filter_cata:
@@ -17,6 +18,9 @@ export default new Vuex.Store({
   mutations: {
     setWorks(state, value){
       state.works = value
+    },
+    setAbout(state, value) {
+      state.about = value
     },
     setLoading(state,value){
       state.loading=value

@@ -109,14 +109,13 @@ setTimeout(() => {
   worksRef.on('value', function (snapshot) {
     preloader.load(Object.values(snapshot.val()).map(o=>o.cover))
     store.commit("setWorks", snapshot.val())
-    console.log("Test")
-    // snapshot.forEach(function (childSnapshot) {
 
-    //   var childKey = childSnapshot.key;
-    //   var childData = childSnapshot.val();
-    //   store.commit("setWorks", childData)
-    //   // console.log(childData);
-    //   // ...
-    // });
   });
+
+
+  var aboutRef = firebase.database().ref('about');
+  aboutRef.on('value', function (snapshot) {
+    store.commit("setAbout", snapshot.val())
+  });
+
 }, 100);
