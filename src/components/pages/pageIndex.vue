@@ -1,9 +1,12 @@
 <template lang="pug">
 .page.page-index
   section.container-fluid.container-slides(v-if="currentSlide")
-    router-link.slides-area(:to="`/project/${currentSlide.id}`")
+    .slides-area
       .col-sm-12.slick.animated.fadeIn
-        .cover(v-for="slide in slides", :style="cssbg(slide.cover)")
+        router-link.cover(
+             v-for="slide in slides",
+             :style="cssbg(slide.cover)",
+             :to="`/project/${currentSlide.id}`")
       .tags
         h3 {{ currentSlide.cata && currentSlide.cata[0] }}
         h3 {{ currentSlide.type && currentSlide.type[0] }}
@@ -86,7 +89,7 @@ export default {
       }
     },
     slides(){
-      return this.available_works.slice(0,5).map(o=>o.work)
+      return this.available_works.filter(s=>s.work.show_index_slide).slice(0,5).map(o=>({...o.work,id: o.id}) )
     }
   },
   mounted(){
@@ -108,6 +111,21 @@ export default {
     //       title: ""
     //     }
     //   ]
+    setTimeout(()=>{
+          this.$nextTick(() => {
+            this.slickEl=$(".slick").slick(
+              this.slickOptions
+            )
+            let _this=this
+            $(".slick").on('beforeChange', function(event, slick, currentSlide, nextSlide){
+              console.log(nextSlide)
+              _this.progress=0
+
+              _this.currentSlideId=nextSlide
+            })
+
+          });
+        },0)
     setInterval(()=>{
       this.progress++
     },40)
@@ -168,12 +186,13 @@ export default {
   .container-slides
     padding: 0
     margin-bottom: 350px
+    position: relative
     +rwd_sm
       margin-bottom: 40px
     .slick-dots
       position: absolute
       left: 200px
-      bottom: -20px
+      bottom: 20px
       button
         background-color: #fff
     .progress
@@ -204,22 +223,26 @@ export default {
         display: none
         
     .sectionTitle.mobile
-      // display: none
+      display: none
       position: absolute
       left: 30px
-      top: 80px 
+      top: 30px 
       color: white
       font-size: 14px
+      &:before
+        mix-blend-mode: lighten
       +rwd_sm
         display: block
+    .slick-list,.slides-area
+      height: 600px
+      +rwd_sm
+        height: 300px
     .slides-area
       display: block
       width: 80%
-      height: 600px
       position: relative
       +rwd_sm
         width: 100%
-        height: 300px
 
     .panel-info-mobile
       padding-top: 10px
@@ -244,7 +267,7 @@ export default {
     .panel-info
       position: absolute
       right: 50px
-      bottom: 5px
+      bottom: -120px
       display: flex
       justify-content:  flex-start
       align-items: center

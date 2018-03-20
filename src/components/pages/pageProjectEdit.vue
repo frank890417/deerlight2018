@@ -20,7 +20,7 @@
             li.list-group-item(v-for="(w,wid) in works", @click="nowId=wid", :class="{active:nowId==wid}")
               .row
                 .col-10 {{w.title}} 
-                  span {{w.show_index?"✓":""}}
+                  span {{w.show_index?"✓":""}} {{w.show_index_slide?"(輪)":""}} 
                   //- span(v-if="!w.show") (草稿)
                   span
                     el-switch.float-right(v-model="w.show")
@@ -48,6 +48,8 @@
                       el-option(:value="c",:label="c", v-for="c in ['平面類','介面類','影片類']", :key="c")
                   el-form-item(label="首頁顯示✓")
                     el-switch(v-model="work.show_index")
+                  el-form-item(label="首頁輪播 (輪)")
+                    el-switch(v-model="work.show_index_slide")
                   el-form-item(label="作者")
                     el-input(v-model="work.author")
                   el-form-item(label="日期")
