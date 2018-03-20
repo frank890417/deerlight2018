@@ -50,6 +50,8 @@
                     el-switch(v-model="work.show_index")
                   el-form-item(label="首頁輪播 (輪)")
                     el-switch(v-model="work.show_index_slide")
+                  el-form-item(label="代表顏色")
+                    el-color-picker(v-model="work.color")
                   el-form-item(label="作者")
                     el-input(v-model="work.author")
                   el-form-item(label="日期")

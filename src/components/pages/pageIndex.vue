@@ -7,7 +7,7 @@
              v-for="slide in slides",
              :style="cssbg(slide.cover)",
              :to="`/project/${currentSlide.id}`")
-      .tags
+      .tags(:style="{'background-color': currentSlide.color || '#f04c4b'}")
         h3 {{ currentSlide.cata && currentSlide.cata[0] }}
         h3 {{ currentSlide.type && currentSlide.type[0] }}
       //- .progress(:style="{width: progress+'%'}")
