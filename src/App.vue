@@ -89,6 +89,13 @@ h1
     height: 20px
     background-color: #c1ceee
     mix-blend-mode: multiply
+  +rwd_sm
+    font-size: 18px
+    font-weight: 700
+    &:before
+      left: -10px
+      width: 50px
+      height: 15px
 h3
   line-height: 1.5
     
@@ -163,6 +170,50 @@ a
   padding: 3px 5px
   color: $colorBlue
   border-bottom: solid 1px $colorBlue
+
+
+
+
+.slick-dots
+  display: flex
+  list-style: none
+  position: absolute
+  left: 20%
+  bottom: 0px
+  padding-left: 0
+  transform: translateX(-50%)
+  padding: 0
+  margin: 0
+
+
+  button
+    border: none
+    +size(20px)
+    transform: scale(0.5)
+    border-radius: 50%
+    background-color: #fff
+    color: transparent
+    font-size: 0
+    margin: 2px
+    outline: none
+    cursor: pointer
+    opacity: 0.4
+    +trans
+    +rwd_md
+      transform: scale(0.35)
+      margin: -2px
+
+
+    &:hover
+      opacity: 1
+
+  .slick-active button
+    opacity: 1
+      
+
+
+
+
 
 .page
   min-height: 100vh
