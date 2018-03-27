@@ -26,7 +26,7 @@ nav.navbar.navbar-toggleable-md.navbar-default.fixed-top.bg-faded(
         router-link(to="/") 首頁
       li.nav-item.range(@click="toggleNav")
         router-link(to="/project") 作品
-      li.nav-item.range(@click="toggleNav")
+      //- li.nav-item.range(@click="toggleNav")
         router-link(to="/product") 產品
       li.nav-item(@click="toggleNav")
         router-link(to="/about") 關於

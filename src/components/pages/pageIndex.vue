@@ -46,7 +46,7 @@
       router-link.col-sm-12.title-works(to="/project")
         h2.sectionTitle 作品
         i.fas.fa-angle-right
-      router-link.col-sm-12.title-products(to="/product")
+      //- router-link.col-sm-12.title-products(to="/product")
         h2.sectionTitle 產品
         i.fas.fa-angle-right
           

@@ -25,7 +25,7 @@
                   span
                     el-switch.float-right(v-model="w.show")
                 .col-2
-                  .btn.btn-danger.btn-xs(@click="removeItem(wid)") -
+                  el-button(@click="removeItem(wid)", type="danger") -
             li.list-group-item(@click="addItem") + 新增
           
           .btn.btn-secondary.form-control(onclick="firebase.auth().signOut()") 登出
@@ -40,7 +40,7 @@
                 //- .btn.btn-primary.pull-right(@click="save") Save
             .row
               .col-sm-4
-                el-form(label-width="100px")
+                el-form(label-width="90px", size='small')
                   el-form-item(label="標題")
                     el-input(v-model="work.title")
                   el-form-item(label="版型")
@@ -48,7 +48,7 @@
                       el-option(:value="c",:label="c", v-for="c in ['平面類','介面類','影片類']", :key="c")
                   el-form-item(label="首頁顯示✓")
                     el-switch(v-model="work.show_index")
-                  el-form-item(label="首頁輪播 (輪)")
+                  el-form-item(label="輪播 (輪)")
                     el-switch(v-model="work.show_index_slide")
                   el-form-item(label="代表顏色")
                     el-color-picker(v-model="work.color")
