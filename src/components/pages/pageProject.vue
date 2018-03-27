@@ -231,6 +231,10 @@ export default {
     display: flex
     justify-content: center
     align-items: center
+    +rwd_sm
+      width: calc(100% + 60px)
+      margin-left: -15px
+      margin-right: -15px
   .yt
     position: relative
     // box-shadow: 0px 0px 40px rgba(black,0.3)
@@ -282,7 +286,7 @@ export default {
     height: 100vh
     max-height: 854px
     +rwd_sm
-      width: 100vw
+      width: calc( 100% + 60px)
       height: auto
       min-height: 400px
       // padding-bottom: 56.25%
@@ -314,6 +318,8 @@ export default {
         width: 15px
         background-color: transparent
         margin-right: 0
+    +rwd_sm
+      padding-top: 50px
   .content
     margin-top: 100px
     margin-bottom: 280px
