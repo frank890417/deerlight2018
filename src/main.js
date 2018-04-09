@@ -26,7 +26,7 @@ Vue.use(ElementUI)
 
 
 /* eslint-disable no-new */
-
+//Vue 混合方法
 Vue.mixin({
   methods: {
     cssbg(url) {
@@ -76,6 +76,7 @@ if (process.env.NODE_ENV=="production"){
 import soft_scroll from 'monoame-softscroll'
 soft_scroll.init()
 
+//預載圖片
 import preloader from 'monoame-preloader'
 var preloadList = [
   "/static/首頁/slider-1.png",
@@ -91,6 +92,7 @@ preloader.load(preloadList).then(() => {
   console.warn("some images can't be loaded")
 })
 
+//firebase設定
 var config = {
     apiKey: "AIzaSyB3qv5BN-vBlxaWe6QcubTYZFwfwJfKzb4",
     authDomain: "deerlight-studio.firebaseapp.com",
@@ -99,12 +101,16 @@ var config = {
     storageBucket: "deerlight-studio.appspot.com",
     messagingSenderId: "271818346070"
   };
+
+//初始化firebase
 window.firebase = firebase
 firebase.initializeApp(config);
 console.log(firebase)
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 window.ui=ui
 
+
+//在滾動跟變換視窗大小時，將新的尺寸或位置commit到store裡面
 window.addEventListener("scroll",function (evt) {
   // console.log(this.window.scrollY)
   store.commit("setScrollTop", window.scrollY)
@@ -116,7 +122,7 @@ window.addEventListener("resize", function (evt) {
 })
 
 
-
+//跟firebase做連結
 setTimeout(() => { 
   var worksRef = firebase.database().ref('works');
   worksRef.on('value', function (snapshot) {
